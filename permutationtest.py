@@ -41,6 +41,7 @@ def printProgressBar (iteration, total, prefix = '[', suffix = ']', decimals = 1
 class C_type(Enum):
 	s2p = "SPfile"
 	spfile  = "SPfile"
+	spice  = "SPICE"
 
 # ------------------------------------------------------------------------------
 
@@ -85,10 +86,14 @@ class ReplacementComponent:
 		return str(self.file.resolve())
 
 	def _get_type(self):
-		'''
-		!TODO!
-		'''
-		return C_type.s2p
+		type = None
+		ending = self.filename.split('.')[-1]
+		if ending == "s2p":
+			type = C_type.spfile
+		elif ending == "sp":
+			type = C_type.spice
+
+		return type
 
 	def build_qucs_string(self, name, basic_properties):
 		type = self.type.value
@@ -188,9 +193,11 @@ def main():
 
 	component_variations = shuffle(components, 4)
 
+	print("Setup done. Starting simulation")
 	print("number of simulations: " + str(len(component_variations)))
 
 	template.create_variation_file("testfile.sch", component_variations[0])
+
 
 	i = 0
 	num_of_simulations = len(component_variations)
@@ -211,9 +218,9 @@ def main():
 		# evaluate results
 		best_val = 0
 		best_variation = variation
-		res = opt_function(result_csv)
-		if res < best_val:
-			best_val = res
+		#res = opt_function(result_csv)
+		#if res < best_val:
+		#	best_val = res
 
 		# delete file
 		os.remove(filename)

@@ -21,12 +21,12 @@
   <R R2 1 420 270 15 -26 0 1 "50 Ohm" 1 "26.85" 0 "0.0" 0 "0.0" 0 "26.85" 0 "european" 0>
   <GND * 5 210 330 0 0 0 0>
   <GND * 5 420 330 0 0 0 0>
-<SPfile X1 1 610 220 -26 -59 0 0 "/home/zamza/Projects/qucs-discrete-matching/components/C/CSRF_0402_885392005012_4R7pF.sp" 1 "rectangular" 0 "linear" 0 "open" 0 "2">
+<SPICE X1 1 610 220 -26 -59 >
   <GND * 5 610 330 0 0 0 0>
   <Pac P1 1 20 270 18 -26 0 1 "1" 1 "50 Ohm" 1 "0 dBm" 0 "1 GHz" 0 "26.85" 0>
   <GND * 5 20 330 0 0 0 0>
   <Eqn Eqn1 1 50 410 -31 15 0 0 "S11_dB=dB(S[1,1])" 1 "yes" 0>
-<SPfile X2 1 320 220 -26 -59 0 0 "/home/zamza/Projects/qucs-discrete-matching/components/C/CSRF_0402_885392005012_4R7pF.sp" 1 "rectangular" 0 "linear" 0 "open" 0 "2">
+<SPICE X2 1 320 220 -26 -59 >
   <GND * 5 320 250 0 0 0 0>
 </Components>
 <Wires>
