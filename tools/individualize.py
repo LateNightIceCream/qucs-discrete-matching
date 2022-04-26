@@ -50,4 +50,4 @@ for element in outlines:
 
     i += 1
 
-input("enter to exit")
+#input("enter to exit")
