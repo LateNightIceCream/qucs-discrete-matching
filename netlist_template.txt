@@ -1,0 +1,46 @@
+.Def:CSRF_0402_885392005001_0R3PF _net1 _net2
+  R:RSER _net1 _net3 R="0.736"
+  C:C _net3 _net4 C="3.65e-013"
+  R:RPAR _net3 _net4 R="1e+010"
+  L:LSER _net2 _net4 L="3e-010"
+.Def:End
+.Def:CSRF_0402_885392005002_0R4PF _net1 _net2
+  R:RSER _net1 _net3 R="0.693"
+  C:C _net3 _net4 C="4.67e-013"
+  R:RPAR _net3 _net4 R="1e+010"
+  L:LSER _net2 _net4 L="3.4e-010"
+.Def:End
+.Def:CSRF_0402_885392005003_0R4PF _net1 _net2
+  R:RSER _net1 _net3 R="0.693"
+  C:C _net3 _net4 C="4.67e-013"
+  R:RPAR _net3 _net4 R="1e+010"
+  L:LSER _net2 _net4 L="3.4e-010"
+.Def:End
+.Def:CSRF_0402_885392005004_0R5PF _net1 _net2
+  R:RSER _net1 _net3 R="0.634"
+  C:C _net3 _net4 C="5.71e-013"
+  R:RPAR _net3 _net4 R="1e+010"
+  L:LSER _net2 _net4 L="3.5e-010"
+.Def:End
+.Def:CSRF_0402_885392005005_1PF _net1 _net2
+  R:RSER _net1 _net3 R="0.506"
+  C:C _net3 _net4 C="1.08e-012"
+  R:RPAR _net3 _net4 R="1e+010"
+  L:LSER _net2 _net4 L="5e-010"
+.Def:End
+.Def:CSRF_0402_885392005006_1PF _net1 _net2
+  R:RSER _net1 _net3 R="0.506"
+  C:C _net3 _net4 C="1.08e-012"
+  R:RPAR _net3 _net4 R="1e+010"
+  L:LSER _net2 _net4 L="5e-010"
+.Def:End
+
+# Qucs 0.0.19  C:/Users/rg/Desktop/qucs-discrete-matching/template_rewrite.sch
+
+Pac:P1 _net0 gnd Num="1" Z="50 Ohm" P="0 dBm" f="1 GHz" Temp="26.85"
+Eqn:Eqn1 S11_dB="dB(S[1,1])" Export="yes"
+SPfile:X1 _net1 gnd File="{C:/Users/rg/Desktop/qucs-discrete-matching/data/testdata.s1p}" Data="rectangular" Interpolator="linear" duringDC="open"
+.SP:SP1 Type="lin" Start="750 MHz" Stop="2 GHz" Points="1000" Noise="no" NoiseIP="1" NoiseOP="2" saveCVs="no" saveAll="no"
+SPfile:TEMPLATE_2 _net0 _net1 gnd File="{C:/Users/rg/Desktop/qucs-discrete-matching/components/L/74279271.s2p}" Data="rectangular" Interpolator="linear" duringDC="open"
+Sub:TEMPLATE_1 gnd _net0 Type="CSRF_0402_885392005001_0R3PF"
+SPfile:TEMPLATE_3 gnd _net1 gnd File="{C:/Users/rg/Desktop/qucs-discrete-matching/components/L/74279271.s2p}" Data="rectangular" Interpolator="linear" duringDC="open"
