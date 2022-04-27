@@ -12,27 +12,70 @@ import pprint
 import subprocess
 import numpy as np
 import logging as l
+
+# TODO: clean up this mess with windows PATH
 import python_qucs_3.qucs.simulate as qucssim
 
 l.basicConfig(level=os.environ.get("LOGLEVEL", "DEBUG"))
 
-# TODO: clean up this mess with windows PATH
 
-# ok now i know how it works, this needs a rewrite :D
 class MySimulationDescription(qucssim.SimulationDescription):
-	def __init__(self, name, netfile):
+	def __init__(self, name, template_netlist_file, component_variation):
 		self.name = name
-		self.template_netlist_file = netfile # path to netlist.txt template file
+		self.component_variation = component_variation
+		self.template_netlist_file = template_netlist_file # path to netlist.txt template file
+		# save the whole file to not open it every time
+		# might take a lot of space :c
+		self.template_netlist_lines = self.get_netlist_lines()
+		self.template_line_indices = self.get_template_line_indices()
 
 	def modify_netlist(self):
-		return self.template_netlist_file
+
+		new_netlist_lines = self.template_netlist_lines
+
+		# for line in self.template_netlist_lines:
+		# 	if line.startswith('Sub:TEMPLATE') or line.startswith('SPfile:TEMPLATE'):
+		# 		new_netlist_lines[i] = self.component_variation[n].get_netlist_string(line)
+		# 		n += 0
+		# 	i += 1
+
+		n = 0
+		for index in self.template_line_indices:
+			new_netlist_lines[index] = self.component_variation[n].get_netlist_string(self.template_netlist_lines[index])
+			n+=1
+
+		# # TODO: \n already included in line?
+		return '\n'.join(self.new_netlist_lines)
+
+	def get_template_line_indices(self):
+		template_line_indices = []
+		i = 0
+		for line in self.template_netlist_lines:
+			if line.startswith('Sub:TEMPLATE') or line.startswith('SPfile:TEMPLATE'):
+				template_line_indices.append(i)
+				i += 1
+		return template_line_indices
+
+	def get_netlist_lines(self):
+		with open(self.template_netlist_file, 'r') as f:
+			self.template_netlist_lines = f.readlines()
+
+	# def remove_netlist_file(self):
+	# 	'''
+	# 	see Simulation.modify_netlist()
+	# 	'''
+	# 	netlists_folder_name = 'netlists'
+	# 	filename = os.path.join(netlists_folder_name,'netlist_%s.txt' % self.name)
+	# 	os.remove(filename)
+
 
 # ------------------------------------------------------------------------------
 
 class Component():
-	def __init__(self, file):
-		self.file = file
-		self.filename = str(file.resolve())
+	def __init__(self, path):
+		self.path = path
+		self.filename = str(self.path.resolve())
+		self.name = self.path.stem
 		self.type = self._get_type()
 
 	def _get_type(self):
@@ -48,6 +91,24 @@ class Component():
 		except Exception as exc:
 			l.error(e)
 		return type
+
+	def get_netlist_string(self, netstring):
+		'''
+		netstring example:
+			Sub:TEMPLATE_n _net0 _net1 ...
+		'''
+		#netstring_ident = netstring[netstring.find('_'):netstring.find()]
+		netstring_ident = netstring.split(' ')
+		netstring_ident = '%s %s %s' % (netstring_ident[0][-1], netstring_ident[1], netstring_ident[2])
+		new_netstring = ''
+
+		if self.type == C_type.spice:
+			new_netstring = 'Sub:TEMPLATE_%s Type="%s"' % (netstring_ident, self.name)
+
+		elif self.type == C_type.spfile:
+			new_netstring = 'SPfile:TEMPLATE_%s gnd File="{%s}" Data="rectangular" Interpolator="linear" duringDC="open"' % (netstring_ident, self.filename)
+
+		return new_netstring
 
 # ------------------------------------------------------------------------------
 
@@ -112,10 +173,11 @@ def generate_netlist(infile, outfile = 'netlist.txt', qucscommand = 'qucs'):
 	# TODO: error handling
 	'''
 	generates netlist from .sch
+	using qucs -n
 	'''
 	#os.system('C:\\Users\\rg\\Desktop\\qucs-0.0.19-win32-mingw482-asco-freehdl-adms\\bin\\qucs.exe -n -i ' + str(infile) + ' -o ' + str(outfile))
-	#subprocess.run('%s -n -i %s -o %s' % (qucscommand, str(infile), str(outfile)))
-	os.system('C:\\Users\\rg\\Desktop\\qucs-0.0.19-win32-mingw482-asco-freehdl-adms\\bin\\qucs.exe -n -i ' + str(infile) + ' -o ' + str(outfile))
+	subprocess.run('%s -n -i %s -o %s' % (qucscommand, str(infile), str(outfile)))
+	#os.system('C:\\Users\\rg\\Desktop\\qucs-0.0.19-win32-mingw482-asco-freehdl-adms\\bin\\qucs.exe -n -i ' + str(infile) + ' -o ' + str(outfile))
 
 # ------------------------------------------------------------------------------
 
@@ -168,7 +230,13 @@ def variations_to_simulations(variations, netlist_template):
 # ------------------------------------------------------------------------------
 
 def sim_thread(sim, i):
-	pass
+	l.debug('simulation ' + str(i))
+	os.remove(sim.netlist)
+	os.remove(sim.out)
+
+	res = 0
+
+	return res
 
 def main():
 
@@ -181,7 +249,6 @@ def main():
 	qucscommand     = qucs_command(qucspath)
 	qucsatorcommand = qucsator_command(qucspath)
 	qucsconvcommand = pathlib.Path(qucspath + '\\qucsconv')
-	print(qucsconvcommand)
 
 	# get component files
 	component_files = get_component_files(component_dir)
@@ -216,14 +283,17 @@ def main():
 
 	# evaluate
 		i = 0
+		best_data = 0
 		for future in concurrent.futures.as_completed(future_to_simulation):
 			try:
 				#data = future.result()[1]
 				#variation = future.result()[0]
+				# if data < best_data:
+				# 	best_data = data
+				# 	print(data)
 				pass
 			except Exception as exc:
-				#print("%r generated an exception: %s" % (url, exc))
-				pass
+				print("simulation generated an exception: %s" % exc)
 			else:
 				pass
 			i += 1
