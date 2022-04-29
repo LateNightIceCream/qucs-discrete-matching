@@ -242,7 +242,7 @@ def sim_thread(sim, i):
 	except:
 		l.error('simulation failed to run')
 
-	os.remove(sim.netlist)
+	#os.remove(sim.netlist)
 	os.remove(sim.out)
 	return (sim.simulation_description.component_variation, res)
 
@@ -331,7 +331,6 @@ def main():
 		return -1
 
 	print("ok!")
-	return
 
 	# convert to component objects
 	components = create_components(component_files)
