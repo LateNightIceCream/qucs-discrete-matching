@@ -319,7 +319,7 @@ def main():
 	print(sys.path)
 
 	try:
-		subprocess.run(['qucs', '--help'], stdout=subprocess.DEVNULL)
+		subprocess.run(['qucs', '--help'], stdout=subprocess.DEVNULL, shell=True)
 	except Exception as exc:
 		l.error('could not execute qucs ' + str(exc))
 		return -1
