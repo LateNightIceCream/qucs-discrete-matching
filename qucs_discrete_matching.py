@@ -316,6 +316,8 @@ def main():
 	if qucspath != '':
 		sys.path.append(qucspath)
 
+	print(sys.path)
+
 	try:
 		subprocess.run(['qucs', '--help'], stdout=subprocess.DEVNULL)
 	except Exception as exc:
