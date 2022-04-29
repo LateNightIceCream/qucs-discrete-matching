@@ -141,24 +141,24 @@ def get_command(path, command):
 
 # ------------------------------------------------------------------------------
 
-def generate_netlist(infile, outfile = 'netlist.txt', qucspath = ''):
+def generate_netlist(infile, outfile = 'netlist.txt'):
 	# TODO: error handling
 	'''
 	generates netlist from .sch
 	using qucs -n
 	'''
-	qucscommand = get_command(qucspath, 'qucs')
-	subprocess.run('%s -n -i %s -o %s' % (qucscommand, str(infile), str(outfile)))
+	subprocess.run('qucs -n -i %s -o %s' % (str(infile), str(outfile)), shell=True)
 
 # ------------------------------------------------------------------------------
 
-def component_to_spice_netlist(component, qucspath = '', i = 1):
+def component_to_spice_netlist(component, i = 1):
 
 	if not component.type == C_type.spice:
 		return None
-	command = get_command(qucspath, 'qucsconv') + ' -if spice -of qucs -i ' + component.filename
+	#command = 'qucsconv' + ' -if spice -of qucs -i ' + component.filename
 
-	output = str(subprocess.check_output(command, text=True))
+	output = subprocess.check_output('qucsconv -if spice -of qucs -i ' + component.filename, shell=True, text=True)
+	output = str(output)
 	start = '.Def:'
 	end   = '.Def:End'
 	def_only = output[output.find(start):output.rfind(end)+len(end)]
@@ -170,7 +170,7 @@ def component_to_spice_netlist(component, qucspath = '', i = 1):
 
 # ------------------------------------------------------------------------------
 
-def spice_up_netlist(netlistfile, components, qucspath = ''):
+def spice_up_netlist(netlistfile, components):
 	'''
 	put all spice components into netlist template
 	'''
@@ -191,7 +191,7 @@ def spice_up_netlist(netlistfile, components, qucspath = ''):
 		f.seek(0, 0)
 		i = 1
 		for component in components:
-			spice = component_to_spice_netlist(component, qucspath, i)
+			spice = component_to_spice_netlist(component, i)
 			if not spice: # ignore s2p
 				continue
 			f.writelines(spice)
@@ -200,13 +200,13 @@ def spice_up_netlist(netlistfile, components, qucspath = ''):
 
 # ------------------------------------------------------------------------------
 
-def variations_to_simulations(variations, netlist_template, qucspath):
+def variations_to_simulations(variations, netlist_template):
 	i = 0
 	sims = []
 	for variation in variations:
 		name = 'simulation_' + str(i)
 		sim_description = MySimulationDescription(name, netlist_template, variation)
-		sims.append(qucssim.Simulation(sim_description, qucspath))
+		sims.append(qucssim.Simulation(sim_description))
 		i += 1
 
 	return sims
@@ -313,13 +313,13 @@ def main():
 	# TODO: turn into command line argument
 
 	# put qucs into PATH
+	env = ''
 	if qucspath != '':
-		sys.path.append(qucspath)
-
-	print(sys.path)
+		env = sys.path.append(abs_path(qucspath))
 
 	try:
-		subprocess.run(['qucs', '--help'], stdout=subprocess.DEVNULL, shell=True)
+		#subprocess.run(['qucs', '--help'], stdout=subprocess.DEVNULL, shell=True)
+		subprocess.run('qucs --help', stdout=subprocess.DEVNULL, shell=True)
 	except Exception as exc:
 		l.error('could not execute qucs ' + str(exc))
 		return -1
@@ -330,15 +330,18 @@ def main():
 		l.error('no component files found in ' + abs_path(component_dir))
 		return -1
 
+	print("ok!")
+	return
+
 	# convert to component objects
 	components = create_components(component_files)
 
 	# convert template.sch to netlist_template.txt
-	generate_netlist(templatefile, netlistfile, qucspath)
+	generate_netlist(templatefile, netlistfile)
 
 	# paste all spice components into netlist
 	# TODO: check impact on simulation speed
-	spice_up_netlist(netlistfile, components, qucspath)
+	spice_up_netlist(netlistfile, components)
 
 	# determine number of template components
 	# TODO: rework
@@ -362,7 +365,7 @@ def main():
 
 	# create an array of simulations (descriptions)
 	# with each variation
-	simulations = variations_to_simulations(component_variations, netlistfile, qucspath)
+	simulations = variations_to_simulations(component_variations, netlistfile)
 
 	l.error("just a test to make sure errors work")
 
