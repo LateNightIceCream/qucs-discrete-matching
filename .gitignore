@@ -2,3 +2,4 @@ components/C/*
 components/L/*
 netlists/*
 outputs/*
+qucs_git/*
