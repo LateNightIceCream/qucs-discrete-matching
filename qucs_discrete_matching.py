@@ -373,6 +373,9 @@ def main():
 	l.info("Done!")
 	print_results(result[0], result[1])
 
+	# remove netlistfile
+	os.remove(netlistfile)
+
 if __name__ == "__main__":
     main()
 
