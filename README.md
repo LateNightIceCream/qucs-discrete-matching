@@ -23,11 +23,13 @@ You can also specify a path for the component files using the `--componentdir` a
 The template file is a qucs schematic file `.qucs` including the topology of the matching network and
 the source, antenna files, etc.
 
-The matching components should have a name like `TEMPLATE_n` (n = 1,2,3,...).
+The matching components should have a name like `TEMPLATE_n` (n = 1,2,3,...) and their file properties should be initally filled with
+some components to be able to initally convert the template file into a netlist file. In other words, you should be able to simulate your
+template file without errors.
+
+![image of default template file](img/template_file.png)
 
 You can use equations, etc. The program only looks for the template components.
-
-This file will be converted into a template netlist file.
 
 The default template file is `template.sh`. You can specify a custom template file using the `--templatefile` argument.
 
