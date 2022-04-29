@@ -218,10 +218,15 @@ def evaluate_data(sim_dat):
 	minimize the maximum value of s11
 	inside the frequency range of interest
 	'''
-	f_1_l = 780e6
-	f_1_h = 980e6
-	f_2_l = 1710e6
-	f_2_h = 1910e6
+	#f_1_l = 780e6
+	#f_1_h = 980e6
+	#f_2_l = 1710e6
+	#f_2_h = 1910e6
+
+	f_1_l = 810e6
+	f_1_h = 890e6
+	f_2_l = 1750e6
+	f_2_h = 1880e6
 
 	freq = np.array(sim_dat["frequency"])
 	s11_db = np.array(sim_dat["S11_dB"])
