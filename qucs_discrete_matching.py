@@ -314,7 +314,7 @@ def main():
 
 	# put qucs into PATH
 	if qucspath != '':
-		sys.path.insert(0, qucspath)
+		sys.path.append(qucspath)
 
 	try:
 		subprocess.run(['qucs', '--help'], stdout=subprocess.DEVNULL)
