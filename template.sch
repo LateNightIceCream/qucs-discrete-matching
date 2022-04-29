@@ -1,6 +1,6 @@
 <Qucs Schematic 0.0.19>
 <Properties>
-  <View=-572,-120,1231,771,1,552,0>
+  <View=-576,-300,1224,794,1,360,60>
   <Grid=10,10,1>
   <DataSet=template.dat>
   <DataDisplay=template.dpl>
@@ -24,22 +24,22 @@
   <GND * 5 420 300 0 0 0 0>
   <GND * 5 210 300 0 0 0 0>
   <GND * 5 20 300 0 0 0 0>
-  <SPfile TEMPLATE_2 1 320 220 -26 -59 0 0 "test.s2p" 1 "rectangular" 0 "linear" 0 "open" 0 "2" 0>
-  <SPICE TEMPLATE_1 1 210 270 -766 -26 0 1 "test.sp" 1 "_net1,_net2" 0 "yes" 0 "none" 0>
   <SPfile X1 1 610 220 -26 -59 0 0 "C:/Users/rg/Desktop/qucs-discrete-matching/data/testdata.s1p" 1 "rectangular" 0 "linear" 0 "open" 0 "1" 0>
   <.SP SP1 1 10 10 0 63 0 0 "lin" 1 "750 MHz" 1 "2 GHz" 1 "1000" 1 "no" 0 "1" 0 "2" 0 "no" 0 "no" 0>
-  <SPfile TEMPLATE_3 1 420 270 -125 -26 0 1 "test.s2p" 1 "rectangular" 0 "linear" 0 "open" 0 "2" 0>
   <GND * 1 450 270 0 0 0 0>
+  <SPfile TEMPLATE_2 1 320 220 -26 -59 0 0 "C:/Users/rg/Desktop/qucs-discrete-matching/components/L/74279271.s2p" 1 "rectangular" 0 "linear" 0 "open" 0 "2" 0>
+  <SPICE TEMPLATE_1 1 210 270 -766 -26 0 1 "C:/Users/rg/Desktop/qucs-discrete-matching/components/C/CSRF_0402_885392005001_0R3pF.sp" 1 "_net1,_net2" 0 "yes" 0 "none" 0>
+  <SPfile TEMPLATE_3 1 420 270 -579 -26 0 1 "C:/Users/rg/Desktop/qucs-discrete-matching/components/L/74279271.s2p" 1 "rectangular" 0 "linear" 0 "open" 0 "2" 0>
 </Components>
 <Wires>
   <350 220 420 220 "" 0 0 0 "">
   <210 220 290 220 "" 0 0 0 "">
-  <210 220 210 240 "" 0 0 0 "">
-  <420 220 420 240 "" 0 0 0 "">
   <420 220 580 220 "" 0 0 0 "">
   <610 250 610 330 "" 0 0 0 "">
   <20 220 210 220 "" 0 0 0 "">
   <20 220 20 240 "" 0 0 0 "">
+  <210 220 210 240 "" 0 0 0 "">
+  <420 220 420 240 "" 0 0 0 "">
 </Wires>
 <Diagrams>
   <Rect 760 572 444 322 3 #c0c0c0 1 00 1 0 0.2 1 1 -0.1 0.5 1.1 1 -0.1 0.5 1.1 315 0 225 "" "" "">
