@@ -3,6 +3,7 @@ import itertools
 from enum import Enum
 import pathlib
 import os
+import sys
 import concurrent.futures
 import subprocess
 import numpy as np
@@ -299,6 +300,9 @@ def thread_it(simulations, component_variations):
 
 # ------------------------------------------------------------------------------
 
+def abs_path(path_string):
+	return str(pathlib.Path(path_string).resolve())
+
 def main():
 	args = parser.parse_args()
 	component_dir = args.componentdir
@@ -308,14 +312,21 @@ def main():
 	netlistfile   = 'netlist_template.txt'
 	# TODO: turn into command line argument
 
+	# put qucs into PATH
+	if qucspath != '':
+		sys.path.insert(0, qucspath)
+
 	try:
-		subprocess.call(os.path.join(qucspath, 'qucs') + ' --help')
+		subprocess.run(['qucs', '--help'], stdout=subprocess.DEVNULL)
 	except Exception as exc:
 		l.error('could not execute qucs ' + str(exc))
 		return -1
 
 	# get component files
 	component_files = get_component_files(pathlib.Path(component_dir))
+	if len(component_files) == 0:
+		l.error('no component files found in ' + abs_path(component_dir))
+		return -1
 
 	# convert to component objects
 	components = create_components(component_files)
