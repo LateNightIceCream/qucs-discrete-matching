@@ -1,6 +1,6 @@
 # qucs-discrete-matching
 
-Horrendous matching simulation
+Horrendous simulation for antenna matching networks
 
 ## Dependencies
 ### Linux
