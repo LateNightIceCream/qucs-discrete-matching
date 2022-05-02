@@ -1,6 +1,10 @@
 <Qucs Schematic 0.0.20>
 <Properties>
+<<<<<<< HEAD
   <View=-576,-80,1224,951,1,480,0>
+=======
+  <View=-576,-143,1224,1011,1,600,0>
+>>>>>>> cc7c80f532852a1d56b75d8759ce276a9f77f1a0
   <Grid=10,10,1>
   <DataSet=template.dat>
   <DataDisplay=template.dpl>
@@ -25,11 +29,19 @@
   <GND * 5 210 300 0 0 0 0>
   <GND * 5 20 300 0 0 0 0>
   <.SP SP1 1 10 10 0 63 0 0 "lin" 1 "750 MHz" 1 "2 GHz" 1 "1000" 1 "no" 0 "1" 0 "2" 0 "no" 0 "no" 0>
+<<<<<<< HEAD
   <GND * 5 450 270 0 0 0 0>
   <SPfile X1 1 610 220 -26 -59 0 0 "/home/zamza/qucs-discrete-matching/data/testdata.s1p" 1 "rectangular" 0 "linear" 0 "open" 0 "1" 0>
   <SPICE TEMPLATE_4 1 320 220 -26 -112 0 0 "/home/zamza/qucs-discrete-matching/components/C/CSRF_0402_885392005011_3R3pF.sp" 1 "_net1,_net2" 0 "yes" 0 "none" 0>
   <SPfile TEMPLATE_3 1 420 270 -711 -26 0 1 "/home/zamza/qucs-discrete-matching/components/L/S-Parameter_7447840112 (rev20a).s2p" 1 "rectangular" 0 "linear" 0 "open" 0 "2" 0>
   <SPfile TEMPLATE_5 1 210 270 -711 -26 0 1 "/home/zamza/qucs-discrete-matching/components/L/S-Parameter_7447840118 (rev20a).s2p" 1 "rectangular" 0 "linear" 0 "open" 0 "2" 0>
+=======
+  <GND * 1 450 270 0 0 0 0>
+  <SPICE TEMPLATE_1 1 210 270 -766 -26 0 1 "/home/richie/simulation/qucs-discrete-matching/components/C/CSRF_0402_885392005004_0R5pF.sp" 1 "_net1,_net2" 0 "yes" 0 "none" 0>
+  <SPfile TEMPLATE_2 1 320 220 -26 -59 0 0 "/home/richie/simulation/qucs-discrete-matching/components/L/S-Parameter_7447840033 (rev20a).s2p" 1 "rectangular" 0 "linear" 0 "open" 0 "2" 0>
+  <SPfile TEMPLATE_3 1 420 270 -778 -26 0 1 "/home/richie/simulation/qucs-discrete-matching/components/L/S-Parameter_7447840047 (rev20a).s2p" 1 "rectangular" 0 "linear" 0 "open" 0 "2" 0>
+  <SPfile X1 1 610 220 -26 -59 0 0 "/home/richie/simulation/qucs-discrete-matching/data/testdata.s1p" 1 "rectangular" 0 "linear" 0 "open" 0 "1" 0>
+>>>>>>> cc7c80f532852a1d56b75d8759ce276a9f77f1a0
 </Components>
 <Wires>
   <350 220 420 220 "" 0 0 0 "">
