@@ -240,7 +240,7 @@ def evaluate_data(sim_dat):
 # ------------------------------------------------------------------------------
 
 def sim_thread(sim, i):
-<<<<<<< HEAD
+
     l.debug('simulation ' + str(i))
     res = None
     try:
@@ -253,20 +253,6 @@ def sim_thread(sim, i):
     os.remove(sim.netlist)
     #os.remove(sim.out)
     return (sim.simulation_description.component_variation, res)
-=======
-	l.debug('simulation ' + str(i))
-	res = None
-	try:
-		sim.run()
-		sim.extract_data()
-		res = evaluate_data(sim.results)
-	except:
-		l.error('simulation failed to run')
-
-	os.remove(sim.netlist)
-	os.remove(sim.out)
-	return (sim.simulation_description.component_variation, res)
->>>>>>> cc7c80f532852a1d56b75d8759ce276a9f77f1a0
 
 # ------------------------------------------------------------------------------
 
