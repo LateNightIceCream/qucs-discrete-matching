@@ -247,7 +247,7 @@ def sim_thread(sim, i):
 	except:
 		l.error('simulation failed to run')
 
-	#os.remove(sim.netlist)
+	os.remove(sim.netlist)
 	os.remove(sim.out)
 	return (sim.simulation_description.component_variation, res)
 
