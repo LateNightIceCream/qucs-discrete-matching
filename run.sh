@@ -1,1 +1,1 @@
-python3 qucs_discrete_matching.py
+python3 qucs_discrete_matching.py --nsimulations 1
