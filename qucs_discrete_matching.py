@@ -25,22 +25,44 @@ import python_qucs_lnic.qucs.simulate as qucssim
 
 l.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 
+
+def get_netlist_lines(file):
+    l = []
+    with open(file, 'r') as f:
+        l = f.readlines()
+
+    return l
+
+def get_template_line_indices(lines):
+    template_line_indices = []
+    i = 0
+    for line in lines:
+        if line.startswith('Sub:TEMPLATE') or line.startswith('SPfile:TEMPLATE'):
+            template_line_indices.append(i)
+        i += 1
+    return template_line_indices
+
+template_netlist_lines = []
+template_line_indices = []
+
 class MySimulationDescription(qucssim.SimulationDescription):
     def __init__(self, name, template_netlist_file, component_variation):
+        global template_netlist_lines
+        global template_line_indices
         self.name = name
         self.component_variation = component_variation
         self.template_netlist_file = template_netlist_file # path to netlist.txt template file
         # save the whole file to not open it every time
         # might take a lot of space :c
-        self.template_netlist_lines = self.get_netlist_lines()
-        self.template_line_indices = self.get_template_line_indices()
+        self.template_netlist_lines = template_netlist_lines
+        self.template_line_indices = template_line_indices
 
     def modify_netlist(self):
-        new_netlist_lines = self.template_netlist_lines
+        new_netlist_lines = template_netlist_lines
 
         n = 0
-        for index in self.template_line_indices:
-            new_netlist_lines[index] = self.component_variation[n].get_netlist_string(self.template_netlist_lines[index])
+        for index in template_line_indices:
+            new_netlist_lines[index] = self.component_variation[n].get_netlist_string(template_netlist_lines[index])
             n+=1
         # # TODO: \n already included in line?
         new_netlist_string = ''.join(new_netlist_lines)
@@ -225,9 +247,9 @@ def evaluate_data(sim_dat):
     #f_2_l = 1710e6
     #f_2_h = 1910e6
 
-    f_1_l = 810e6
-    f_1_h = 890e6
-    f_2_l = 1750e6
+    f_1_l = 790e6
+    f_1_h = 960e6
+    f_2_l = 1710e6
     f_2_h = 1880e6
 
     freq = np.array(sim_dat["frequency"])
@@ -239,7 +261,19 @@ def evaluate_data(sim_dat):
 
 # ------------------------------------------------------------------------------
 
+sim_started = False
 def sim_thread(sim, i):
+
+    #if comp_vars[i] == sim.simulation_description.component_variation:
+    #    l.info('equal!')
+    #else:
+    #    l.error('unequal!')
+
+    global sim_started
+    if not sim_started:
+        l.info('simulation started')
+        sim_started = True
+
 
     l.debug('simulation ' + str(i))
     res = None
@@ -250,9 +284,13 @@ def sim_thread(sim, i):
     except:
         l.error('simulation failed to run')
 
+    # DELETE
     os.remove(sim.netlist)
+    var = sim.simulation_description.component_variation
     #os.remove(sim.out)
-    return (sim.simulation_description.component_variation, res)
+    #return (sim.simulation_description.component_variation, res)
+    # TODO: problem maybe?
+    return (i, res, var)
 
 # ------------------------------------------------------------------------------
 
@@ -263,51 +301,80 @@ def print_results(data, variation, unit = 'dB'):
         l.info(component.name)
     l.info('============')
 
+def get_result_str(data, variation, unit = 'dB'):
+    s = ''
+    s += 'S11: %s %s\n' % (str(data), unit)
+    s += 'produced by\n'
+    for component in variation:
+        s += component.name + '\n'
+    s+= '============\n'
+    return s
+
 # ------------------------------------------------------------------------------
-
 def thread_it(simulations, component_variations):
+    i = 0
+    best_data = 0
+    best_variation = None
+    tot = len(component_variations)
+    n_done = 0
+
     with concurrent.futures.ThreadPoolExecutor() as executor:
-        future_to_simulation = []
-        i = 0
-        for simulation in simulations:
-            future_to_simulation.append(executor.submit(sim_thread, simulation, i))
-            i += 1
 
-        i = 0
-        best_data = 0
-        best_variation = None
-        target = -1
-        use_target = True
-        dat = []
-        for future in concurrent.futures.as_completed(future_to_simulation):
-            try:
-                res = future.result()
-                data = res[1]
-                variation = res[0]
-                dat.append(data)
-                datlen = len(dat)
-                if datlen % 100 == 0:
-                    l.info("progress: " + str(datlen) + ' / ' + str(len(component_variations)))
+        futures_notdone = set()
+        futures_done = set()
+        maxf = 2000
+
+        for i, sim in enumerate(simulations):
+            futures_notdone.add(executor.submit(sim_thread, sim, i))
+            if len(futures_notdone) >= maxf:
+                done, futures_notdone = concurrent.futures.wait(futures_notdone, return_when=concurrent.futures.FIRST_COMPLETED)
+                futures_done.update(done)
+
+            if len(futures_done) >= 1:
+                while futures_done:
+                    i, data, variation = futures_done.pop().result()
+                    #i, data = future.result() 
+                    if data < best_data:
+                        best_data = data
+                        best_variation = variation
+                        print_results(data, best_variation)
+                        with open('results_opt.txt', 'w+') as f:
+                            f.write(get_result_str(data, best_variation))
+                    simulations[i].results = None # clear memory
+                    del simulations[i].simulation_description
+                    n_done += 1
+                if n_done % 100 == 0:
+                    l.info('progress: %s / %s' % (str(n_done), str(tot)))
+
+    # check the rest thats not % maxf
+    for future in concurrent.futures.as_completed(futures_notdone):
+        i, data, variation = future.result()
+        if data < best_data:
+            best_data = data
+            best_variation = variation
+            print_results(data, best_variation)
+            with open('results_opt.txt', 'w+') as f:
+                f.write(get_result_str(data, best_variation))
+
+    for future in futures_done:
+        i, data, variation = future.result()
+        if data < best_data:
+            best_data = data
+            best_variation = variation
+            print_results(data, best_variation)
+            with open('results_opt.txt', 'w+') as f:
+                f.write(get_result_str(data, best_variation))
 
 
-                if data < best_data:
-                    best_data = data
-                    best_variation = variation
-                    print_results(data, variation)
 
-            except Exception as exc:
-                l.error("simulation generated an exception: %s" % exc)
-            else:
-                pass
-            i += 1
-
-        return (best_data, best_variation)
+    return (best_data, best_variation)
 
 # ------------------------------------------------------------------------------
 
 def abs_path(path_string):
     return str(pathlib.Path(path_string).resolve())
 
+@profile
 def main():
     args = parser.parse_args()
     component_dir = args.componentdir
@@ -347,6 +414,12 @@ def main():
     # TODO: check impact on simulation speed
     spice_up_netlist(netlistfile, components)
 
+    # TODO: memory optimization, currently global variable
+    global template_netlist_lines
+    global template_line_indices
+    template_netlist_lines = get_netlist_lines(netlistfile)
+    template_line_indices  = get_template_line_indices(template_netlist_lines)
+
     # determine number of template components
     # TODO: rework
     tmpsimdescr = MySimulationDescription('tmp', netlistfile, None)
@@ -371,6 +444,7 @@ def main():
     # with each variation
     simulations = variations_to_simulations(component_variations, netlistfile)
 
+    l.info("Total number of simulations: %s" % (str(len(simulations))))
     l.error("just a test to make sure errors work")
 
     # create a thread for each simulation
