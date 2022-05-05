@@ -1,1 +1,1 @@
-python3 qucs_discrete_matching.py |& tee results.txt
+python3 main.py --nsimulations 100 |& tee results.txt
