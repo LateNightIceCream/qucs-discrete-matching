@@ -1,0 +1,138 @@
+.Def:CSRF_0402_885392005012_4R7pF_sp _net1 _net2
+.Def:CSRF_0402_885392005012_4R7PF _net1 _net2
+  R:RSER _net1 _net3 R="0.21"
+  C:C _net3 _net4 C="4.81e-12"
+  R:RPAR _net3 _net4 R="1e+10"
+  L:LSER _net2 _net4 L="4.4e-10"
+.Def:End
+Sub:X1 _net1 _net2 Type="CSRF_0402_885392005012_4R7PF"
+.Def:End
+.Def:CSRF_0402_885392005001_0R3pF_sp _net1 _net2
+.Def:CSRF_0402_885392005001_0R3PF _net1 _net2
+  R:RSER _net1 _net3 R="0.736"
+  C:C _net3 _net4 C="3.65e-13"
+  R:RPAR _net3 _net4 R="1e+10"
+  L:LSER _net2 _net4 L="3e-10"
+.Def:End
+Sub:X2 _net1 _net2 Type="CSRF_0402_885392005001_0R3PF"
+.Def:End
+.Def:CSRF_0402_885392005004_0R5pF_sp _net1 _net2
+.Def:CSRF_0402_885392005004_0R5PF _net1 _net2
+  R:RSER _net1 _net3 R="0.634"
+  C:C _net3 _net4 C="5.71e-13"
+  R:RPAR _net3 _net4 R="1e+10"
+  L:LSER _net2 _net4 L="3.5e-10"
+.Def:End
+Sub:X3 _net1 _net2 Type="CSRF_0402_885392005004_0R5PF"
+.Def:End
+.Def:CSRF_0402_885392005011_3R3pF_sp _net1 _net2
+.Def:CSRF_0402_885392005011_3R3PF _net1 _net2
+  R:RSER _net1 _net3 R="0.52"
+  C:C _net3 _net4 C="3.39e-12"
+  R:RPAR _net3 _net4 R="1e+10"
+  L:LSER _net2 _net4 L="4e-10"
+.Def:End
+Sub:X4 _net1 _net2 Type="CSRF_0402_885392005011_3R3PF"
+.Def:End
+.Def:CSRF_0402_885392005002_0R4pF_sp _net1 _net2
+.Def:CSRF_0402_885392005002_0R4PF _net1 _net2
+  R:RSER _net1 _net3 R="0.693"
+  C:C _net3 _net4 C="4.67e-13"
+  R:RPAR _net3 _net4 R="1e+10"
+  L:LSER _net2 _net4 L="3.4e-10"
+.Def:End
+Sub:X5 _net1 _net2 Type="CSRF_0402_885392005002_0R4PF"
+.Def:End
+.Def:CSRF_0402_885392005003_0R4pF_sp _net1 _net2
+.Def:CSRF_0402_885392005003_0R4PF _net1 _net2
+  R:RSER _net1 _net3 R="0.693"
+  C:C _net3 _net4 C="4.67e-13"
+  R:RPAR _net3 _net4 R="1e+10"
+  L:LSER _net2 _net4 L="3.4e-10"
+.Def:End
+Sub:X6 _net1 _net2 Type="CSRF_0402_885392005003_0R4PF"
+.Def:End
+.Def:CSRF_0402_885392005013_5R6pF_sp _net1 _net2
+.Def:CSRF_0402_885392005013_5R6PF _net1 _net2
+  R:RSER _net1 _net3 R="0.92"
+  C:C _net3 _net4 C="5.66e-12"
+  R:RPAR _net3 _net4 R="1e+10"
+  L:LSER _net2 _net4 L="4.4e-10"
+.Def:End
+Sub:X7 _net1 _net2 Type="CSRF_0402_885392005013_5R6PF"
+.Def:End
+.Def:CSRF_0402_885392005007_1R5pF_sp _net1 _net2
+.Def:CSRF_0402_885392005007_1R5PF _net1 _net2
+  R:RSER _net1 _net3 R="0.473"
+  C:C _net3 _net4 C="1.61e-12"
+  R:RPAR _net3 _net4 R="1e+10"
+  L:LSER _net2 _net4 L="4.5e-10"
+.Def:End
+Sub:X8 _net1 _net2 Type="CSRF_0402_885392005007_1R5PF"
+.Def:End
+.Def:CSRF_0402_885392005014_9pF_sp _net1 _net2
+.Def:CSRF_0402_885392005014_9PF _net1 _net2
+  R:RSER _net1 _net3 R="0.164"
+  C:C _net3 _net4 C="9.06e-12"
+  R:RPAR _net3 _net4 R="1e+10"
+  L:LSER _net2 _net4 L="5.07e-10"
+.Def:End
+Sub:X9 _net1 _net2 Type="CSRF_0402_885392005014_9PF"
+.Def:End
+.Def:CSRF_0402_885392005006_1pF_sp _net1 _net2
+.Def:CSRF_0402_885392005006_1PF _net1 _net2
+  R:RSER _net1 _net3 R="0.506"
+  C:C _net3 _net4 C="1.08e-12"
+  R:RPAR _net3 _net4 R="1e+10"
+  L:LSER _net2 _net4 L="5e-10"
+.Def:End
+Sub:X10 _net1 _net2 Type="CSRF_0402_885392005006_1PF"
+.Def:End
+.Def:CSRF_0402_885392005010_3pF_sp _net1 _net2
+.Def:CSRF_0402_885392005010_3PF _net1 _net2
+  R:RSER _net1 _net3 R="0.273"
+  C:C _net3 _net4 C="3.08e-12"
+  R:RPAR _net3 _net4 R="1e+10"
+  L:LSER _net2 _net4 L="4e-10"
+.Def:End
+Sub:X11 _net1 _net2 Type="CSRF_0402_885392005010_3PF"
+.Def:End
+.Def:CSRF_0402_885392005009_2R3pF_sp _net1 _net2
+.Def:CSRF_0402_885392005009_2R3PF _net1 _net2
+  R:RSER _net1 _net3 R="0.363"
+  C:C _net3 _net4 C="2.42e-12"
+  R:RPAR _net3 _net4 R="1e+10"
+  L:LSER _net2 _net4 L="4e-10"
+.Def:End
+Sub:X12 _net1 _net2 Type="CSRF_0402_885392005009_2R3PF"
+.Def:End
+.Def:CSRF_0402_885392005008_1R8pF_sp _net1 _net2
+.Def:CSRF_0402_885392005008_1R8PF _net1 _net2
+  R:RSER _net1 _net3 R="0.443"
+  C:C _net3 _net4 C="1.88e-12"
+  R:RPAR _net3 _net4 R="1e+10"
+  L:LSER _net2 _net4 L="4.7e-10"
+.Def:End
+Sub:X13 _net1 _net2 Type="CSRF_0402_885392005008_1R8PF"
+.Def:End
+.Def:CSRF_0402_885392005005_1pF_sp _net1 _net2
+.Def:CSRF_0402_885392005005_1PF _net1 _net2
+  R:RSER _net1 _net3 R="0.506"
+  C:C _net3 _net4 C="1.08e-12"
+  R:RPAR _net3 _net4 R="1e+10"
+  L:LSER _net2 _net4 L="5e-10"
+.Def:End
+Sub:X14 _net1 _net2 Type="CSRF_0402_885392005005_1PF"
+.Def:End
+# Qucs 0.0.20  /home/zamza/SharedFolder/qucs-discrete-matching/template.sch
+
+
+
+Eqn:Eqn1 S11_dB="dB(S[1,1])" Export="yes"
+.SP:SP1 Type="lin" Start="750 MHz" Stop="2 GHz" Points="1000" Noise="no" NoiseIP="1" NoiseOP="2" saveCVs="no" saveAll="no"
+Pac:P1 _net0 gnd Num="1" Z="50 Ohm" P="0 dBm" f="1 GHz" Temp="26.85"
+Sub:TEMPLATE_6 _net0 _net1 gnd Type="CSRF_0402_885392005002_0R4pF_sp"
+SPfile:TEMPLATE_5 gnd _net1 gnd File="{/home/zamza/SharedFolder/qucs-discrete-matching/components/L/S-Parameter_7447840012 (rev20a).s2p}" Data="rectangular" Interpolator="linear" duringDC="open"
+Sub:TEMPLATE_4 _net1 _net2 gnd Type="CSRF_0402_885392005004_0R5pF_sp"
+SPfile:TEMPLATE_3 gnd _net2 gnd File="{/home/zamza/SharedFolder/qucs-discrete-matching/components/L/S-Parameter_7447840012 (rev20a).s2p}" Data="rectangular" Interpolator="linear" duringDC="open"
+SPfile:X1 _net2 gnd File="{/home/zamza/SharedFolder/qucs-discrete-matching/antenna_data/aniou-antenna-large-raw-0R.s1p}" Data="rectangular" Interpolator="linear" duringDC="open"

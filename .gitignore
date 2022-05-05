@@ -3,3 +3,5 @@ components/L/*
 netlists/*
 outputs/*
 qucs_git/*
+*.dpl
+*.dat
