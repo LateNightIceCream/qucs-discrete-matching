@@ -12,12 +12,24 @@ import argparse
 from random import shuffle
 import timeit
 import time
+import math
+from datetime import datetime
+
+# TODO for v2:
+# keep track of component names
+# automatically generate templates from results
+# plot "best" solutions (filtered solutions) to be able to scroll through them
+# print results without =============
+
 
 parser = argparse.ArgumentParser(description='Weird Simulation of Matching Networks for Discrete Component Files')
 parser.add_argument('-q', '--qucspath', type=str, help='path to qucs directory containing qucs, qucsconv and qucsator', default='')
 parser.add_argument('-t', '--templatefile', type=str, help='qucs template .sch file to use', default='template.sch')
+parser.add_argument('-u', '--netlistfile', type=str, help='qucs output netlist file to use', default='netlist_template.txt')
 parser.add_argument('-d', '--componentdir', type=str, help='path to component directory containing .sp or .s2p files (can be nested)', default='components/')
 parser.add_argument('-n', '--nsimulations', type=int, help='max number of simulations', default=-1)
+parser.add_argument('-o', '--outfile', type=str, help='output file name', default='results.txt')
+templatefile = None
 
 # TODO: make qucspath common, create SimulationManager class or similar
 # TODO: clean up this mess with windows PATH
@@ -25,6 +37,15 @@ import python_qucs_lnic.qucs.simulate as qucssim
 
 l.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 
+def append_result_to_schematic(filename, variation):
+    pass
+
+def get_timestamp(verb = False):
+    d = datetime.now()
+    s = d.strftime('%Y-%m-%d')
+    if verb:
+        s += d.strftime('@%H:%M:%S')
+    return s
 
 def get_netlist_lines(file):
     l = []
@@ -253,11 +274,15 @@ def evaluate_data(sim_dat):
     f_2_h = 1880e6
 
     freq = np.array(sim_dat["frequency"])
+
     s11_db = np.array(sim_dat["S11_dB"])
-    freq_indices = [i for i, n in enumerate(freq) if (n > f_1_l and n < f_1_h) or (n > f_2_l and n < f_2_h)]
-    s11_db = s11_db[freq_indices]
+    freq_indices_1 = [i for i, n in enumerate(freq) if (n > f_1_l and n < f_1_h)]
+    freq_indices_2 = [i for i, n in enumerate(freq) if (n > f_2_l and n < f_2_h)]
+    s11_db_1 = s11_db[freq_indices_1]
+    s11_db_2 = s11_db[freq_indices_2]
+
     #return min(s11_db)
-    return max(s11_db)
+    return ((max(s11_db_1), min(s11_db_1)), (max(s11_db_2), min(s11_db_2)))
 
 # ------------------------------------------------------------------------------
 
@@ -294,27 +319,67 @@ def sim_thread(sim, i):
 
 # ------------------------------------------------------------------------------
 
-def print_results(data, variation, unit = 'dB'):
-    l.info('S11: %s %s' % (str(data), unit))
-    l.info('produced by')
-    for component in variation:
-        l.info(component.name)
-    l.info('============')
-
 def get_result_str(data, variation, unit = 'dB'):
+    maxdb_1 = data[0][0]
+    mindb_1 = data[0][1]
+    maxdb_2 = data[1][0]
+    mindb_2 = data[1][1]
     s = ''
-    s += 'S11: %s %s\n' % (str(data), unit)
+    s += 'S11_max_1: %s %s\n' % (str(maxdb_1), unit)
+    s += 'S11_min_1: %s %s\n' % (str(mindb_1), unit)
+    s += 'S11_max_2: %s %s\n' % (str(maxdb_2), unit)
+    s += 'S11_min_2: %s %s\n' % (str(mindb_2), unit)
     s += 'produced by\n'
     for component in variation:
         s += component.name + '\n'
     s+= '============\n'
     return s
 
+def print_results(data, variation, unit = 'dB'):
+    l.info(get_result_str(data, variation, unit))
+
+
+
+best_data = 0
+best_max_1 = 0
+best_max_2 = 0
+best_variation = None
+def sim_evaluation(i, data, variation):
+    global best_data
+    global best_max_1
+    global best_max_2
+    global best_variation
+    global templatefile
+
+    data_1 = data[0]
+    data_2 = data[1]
+    maxdb_1 = data_1[0]
+    mindb_1 = data_1[1]
+    maxdb_2 = data_2[0]
+    mindb_2 = data_2[1]
+
+    if (mindb_1 < -10 and maxdb_1 < -3 and mindb_2 < -10 and maxdb_2 < -3):
+        if (maxdb_1 < best_max_1 and maxdb_2 < best_max_2):
+            l.info('==============')
+            l.info('NEW BEST')
+            l.info('==============')
+            best_max_1 = maxdb_1
+            best_max_2 = maxdb_2
+            best_data = data
+            best_variation = variation
+            with open('results_opt.txt', 'w+') as f:
+                f.write(get_result_str(data, best_variation))
+
+        #append_result_to_schematic(templatefile, variation)
+
+        print_results(data, variation)
+
+
 # ------------------------------------------------------------------------------
 def thread_it(simulations, component_variations):
     i = 0
-    best_data = 0
-    best_variation = None
+    global best_data
+    global best_variation
     tot = len(component_variations)
     n_done = 0
 
@@ -333,14 +398,11 @@ def thread_it(simulations, component_variations):
             if len(futures_done) >= 1:
                 while futures_done:
                     i, data, variation = futures_done.pop().result()
-                    #i, data = future.result() 
-                    if data < best_data:
-                        best_data = data
-                        best_variation = variation
-                        print_results(data, best_variation)
-                        with open('results_opt.txt', 'w+') as f:
-                            f.write(get_result_str(data, best_variation))
-                    simulations[i].results = None # clear memory
+
+                    sim_evaluation(i, data, variation) 
+
+                    # clear memory
+                    simulations[i].results = None 
                     del simulations[i].simulation_description
                     n_done += 1
                 if n_done % 100 == 0:
@@ -349,23 +411,11 @@ def thread_it(simulations, component_variations):
     # check the rest thats not % maxf
     for future in concurrent.futures.as_completed(futures_notdone):
         i, data, variation = future.result()
-        if data < best_data:
-            best_data = data
-            best_variation = variation
-            print_results(data, best_variation)
-            with open('results_opt.txt', 'w+') as f:
-                f.write(get_result_str(data, best_variation))
+        sim_evaluation(i, data, variation)
 
     for future in futures_done:
         i, data, variation = future.result()
-        if data < best_data:
-            best_data = data
-            best_variation = variation
-            print_results(data, best_variation)
-            with open('results_opt.txt', 'w+') as f:
-                f.write(get_result_str(data, best_variation))
-
-
+        sim_evaluation(i, data, variation)
 
     return (best_data, best_variation)
 
@@ -374,14 +424,16 @@ def thread_it(simulations, component_variations):
 def abs_path(path_string):
     return str(pathlib.Path(path_string).resolve())
 
-@profile
+#@profile
 def main():
     args = parser.parse_args()
     component_dir = args.componentdir
+    global templatefile
     templatefile  = args.templatefile
     nsimulations  = args.nsimulations
     qucspath      = args.qucspath
-    netlistfile   = 'netlist_template.txt'
+    outputfile    = args.outfile
+    netlistfile   = args.netlistfile #'netlist_template.txt'
     # TODO: turn into command line argument
 
     # put qucs into PATH
@@ -451,8 +503,16 @@ def main():
     # make sure to delete all netlists and output files after the thread is done
     result = thread_it(simulations, component_variations)
 
+    best_data = result[0]
+    best_variation = result[1]
     l.info("Done!")
-    print_results(result[0], result[1])
+    print_results(best_data, best_variation)
+    with open(outputfile, 'w+') as f:
+        f.write('------------------\n')
+        f.write(get_timestamp(True) + '\n')
+        f.write('------------------\n')
+        f.write(get_result_str(best_data, best_variation)+'\n')
+        f.write('------------------\n')
 
     # remove netlistfile
     os.remove(netlistfile)

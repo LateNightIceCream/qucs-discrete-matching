@@ -1,0 +1,305 @@
+INFO:root:Number of detected Template Components: 3
+INFO:root:Total number of simulations: 27000
+ERROR:root:just a test to make sure errors work
+INFO:root:simulation started
+INFO:root:progress: 100 / 27000
+INFO:root:==============
+INFO:root:NEW BEST
+INFO:root:==============
+INFO:root:S11_max_1: -3.914183448833042 dB
+S11_min_1: -11.332478007849513 dB
+S11_max_2: -3.6989634223576884 dB
+S11_min_2: -11.084560406505116 dB
+produced by
+S-Parameter_7447840068 (rev20a)
+CSRF_0402_885392005010_3pF
+S-Parameter_7447840082 (rev20a)
+============
+
+INFO:root:progress: 500 / 27000
+INFO:root:progress: 600 / 27000
+INFO:root:progress: 700 / 27000
+INFO:root:progress: 800 / 27000
+INFO:root:progress: 1000 / 27000
+INFO:root:progress: 1100 / 27000
+INFO:root:progress: 1200 / 27000
+INFO:root:progress: 1500 / 27000
+INFO:root:progress: 1700 / 27000
+INFO:root:progress: 2000 / 27000
+INFO:root:progress: 2100 / 27000
+INFO:root:progress: 2200 / 27000
+INFO:root:progress: 2300 / 27000
+INFO:root:progress: 2900 / 27000
+INFO:root:progress: 3100 / 27000
+INFO:root:progress: 3200 / 27000
+INFO:root:S11_max_1: -3.4316588677362425 dB
+S11_min_1: -16.82459769164121 dB
+S11_max_2: -3.6165814294279386 dB
+S11_min_2: -12.48325455143075 dB
+produced by
+S-Parameter_7447840056 (rev20a)
+CSRF_0402_885392005010_3pF
+S-Parameter_7447840075 (rev20a)
+============
+
+INFO:root:progress: 3700 / 27000
+INFO:root:S11_max_1: -4.13670423655155 dB
+S11_min_1: -11.349628113020682 dB
+S11_max_2: -3.588040521599289 dB
+S11_min_2: -11.60307058433663 dB
+produced by
+S-Parameter_7447840068 (rev20a)
+CSRF_0402_885392005010_3pF
+S-Parameter_7447840075 (rev20a)
+============
+
+INFO:root:progress: 4400 / 27000
+INFO:root:progress: 4600 / 27000
+INFO:root:progress: 4700 / 27000
+INFO:root:progress: 5200 / 27000
+INFO:root:progress: 5600 / 27000
+INFO:root:progress: 5700 / 27000
+INFO:root:progress: 5800 / 27000
+INFO:root:progress: 5900 / 27000
+INFO:root:progress: 6000 / 27000
+INFO:root:progress: 6100 / 27000
+INFO:root:progress: 6300 / 27000
+INFO:root:progress: 6500 / 27000
+INFO:root:progress: 6900 / 27000
+INFO:root:progress: 7000 / 27000
+INFO:root:progress: 7100 / 27000
+INFO:root:progress: 7200 / 27000
+INFO:root:progress: 7500 / 27000
+INFO:root:S11_max_1: -3.490017351580437 dB
+S11_min_1: -29.267837580899855 dB
+S11_max_2: -3.1618703463691435 dB
+S11_min_2: -19.838144965214134 dB
+produced by
+S-Parameter_7447840047 (rev20a)
+CSRF_0402_885392005011_3R3pF
+S-Parameter_7447840056 (rev20a)
+============
+
+INFO:root:progress: 7600 / 27000
+INFO:root:progress: 7700 / 27000
+INFO:root:progress: 7900 / 27000
+INFO:root:progress: 8000 / 27000
+INFO:root:S11_max_1: -4.249346467259213 dB
+S11_min_1: -13.769320223905524 dB
+S11_max_2: -3.238800270382192 dB
+S11_min_2: -13.948072065105851 dB
+produced by
+S-Parameter_7447840068 (rev20a)
+CSRF_0402_885392005010_3pF
+S-Parameter_7447840056 (rev20a)
+============
+
+INFO:root:progress: 8100 / 27000
+INFO:root:progress: 8300 / 27000
+INFO:root:progress: 8500 / 27000
+INFO:root:progress: 9500 / 27000
+INFO:root:progress: 9600 / 27000
+INFO:root:progress: 9800 / 27000
+INFO:root:progress: 10000 / 27000
+INFO:root:progress: 10200 / 27000
+INFO:root:progress: 10300 / 27000
+INFO:root:progress: 10500 / 27000
+INFO:root:progress: 10600 / 27000
+INFO:root:progress: 10700 / 27000
+INFO:root:progress: 10900 / 27000
+INFO:root:progress: 11000 / 27000
+INFO:root:S11_max_1: -3.652157643786591 dB
+S11_min_1: -11.44673534359542 dB
+S11_max_2: -3.1847136280267208 dB
+S11_min_2: -13.748510802141414 dB
+produced by
+S-Parameter_7447840082 (rev20a)
+CSRF_0402_885392005010_3pF
+S-Parameter_7447840056 (rev20a)
+============
+
+INFO:root:progress: 11100 / 27000
+INFO:root:progress: 11600 / 27000
+INFO:root:progress: 11800 / 27000
+INFO:root:progress: 11900 / 27000
+INFO:root:progress: 12400 / 27000
+INFO:root:S11_max_1: -4.425565550854075 dB
+S11_min_1: -11.558708528480675 dB
+S11_max_2: -3.4432291494753264 dB
+S11_min_2: -12.399784859109207 dB
+produced by
+S-Parameter_7447840068 (rev20a)
+CSRF_0402_885392005010_3pF
+S-Parameter_7447840068 (rev20a)
+============
+
+INFO:root:progress: 12900 / 27000
+INFO:root:progress: 13000 / 27000
+INFO:root:progress: 13500 / 27000
+INFO:root:progress: 14000 / 27000
+INFO:root:S11_max_1: -4.008337844151331 dB
+S11_min_1: -20.59955400140729 dB
+S11_max_2: -3.2850848351122295 dB
+S11_min_2: -14.779450490714677 dB
+produced by
+S-Parameter_7447840056 (rev20a)
+CSRF_0402_885392005010_3pF
+S-Parameter_7447840056 (rev20a)
+============
+
+INFO:root:progress: 14100 / 27000
+INFO:root:progress: 14300 / 27000
+INFO:root:S11_max_1: -4.060371914979682 dB
+S11_min_1: -12.464482226073436 dB
+S11_max_2: -3.3312867981862277 dB
+S11_min_2: -15.062915134693085 dB
+produced by
+S-Parameter_7447840056 (rev20a)
+CSRF_0402_885392005011_3R3pF
+S-Parameter_7447840068 (rev20a)
+============
+
+INFO:root:progress: 14700 / 27000
+INFO:root:S11_max_1: -3.144285956962163 dB
+S11_min_1: -10.35252939197995 dB
+S11_max_2: -3.123697443853124 dB
+S11_min_2: -14.445741681768087 dB
+produced by
+S-Parameter_7447840110 (rev20a)
+CSRF_0402_885392005011_3R3pF
+S-Parameter_7447840056 (rev20a)
+============
+
+INFO:root:progress: 14800 / 27000
+INFO:root:progress: 14900 / 27000
+INFO:root:progress: 15000 / 27000
+INFO:root:progress: 15100 / 27000
+INFO:root:S11_max_1: -3.008639383471206 dB
+S11_min_1: -25.273976822667905 dB
+S11_max_2: -3.3185794803584816 dB
+S11_min_2: -17.674149354120566 dB
+produced by
+S-Parameter_7447840047 (rev20a)
+CSRF_0402_885392005011_3R3pF
+S-Parameter_7447840068 (rev20a)
+============
+
+INFO:root:progress: 15200 / 27000
+INFO:root:progress: 15300 / 27000
+INFO:root:progress: 15500 / 27000
+INFO:root:progress: 15800 / 27000
+INFO:root:progress: 16000 / 27000
+INFO:root:progress: 16800 / 27000
+INFO:root:progress: 17000 / 27000
+INFO:root:progress: 17100 / 27000
+INFO:root:progress: 17200 / 27000
+INFO:root:progress: 17400 / 27000
+INFO:root:S11_max_1: -3.0225510960644506 dB
+S11_min_1: -20.891152669502322 dB
+S11_max_2: -3.3557816184480345 dB
+S11_min_2: -16.533660313094238 dB
+produced by
+S-Parameter_7447840047 (rev20a)
+CSRF_0402_885392005010_3pF
+S-Parameter_7447840056 (rev20a)
+============
+
+INFO:root:progress: 18000 / 27000
+INFO:root:progress: 18400 / 27000
+INFO:root:S11_max_1: -3.372214505805357 dB
+S11_min_1: -13.096803302837845 dB
+S11_max_2: -3.551230173021575 dB
+S11_min_2: -13.47631536387774 dB
+produced by
+S-Parameter_7447840056 (rev20a)
+CSRF_0402_885392005011_3R3pF
+S-Parameter_7447840082 (rev20a)
+============
+
+INFO:root:progress: 18600 / 27000
+INFO:root:progress: 18900 / 27000
+INFO:root:progress: 19000 / 27000
+INFO:root:progress: 19300 / 27000
+INFO:root:progress: 19400 / 27000
+INFO:root:progress: 19900 / 27000
+INFO:root:progress: 20000 / 27000
+INFO:root:S11_max_1: -4.765510716951301 dB
+S11_min_1: -13.172920199836133 dB
+S11_max_2: -3.155235443286199 dB
+S11_min_2: -16.98566934873056 dB
+produced by
+S-Parameter_7447840056 (rev20a)
+CSRF_0402_885392005011_3R3pF
+S-Parameter_7447840056 (rev20a)
+============
+
+INFO:root:progress: 20300 / 27000
+INFO:root:S11_max_1: -3.9361325391878736 dB
+S11_min_1: -12.055290069260057 dB
+S11_max_2: -3.2077402981252634 dB
+S11_min_2: -13.841008934193056 dB
+produced by
+S-Parameter_7447840075 (rev20a)
+CSRF_0402_885392005010_3pF
+S-Parameter_7447840056 (rev20a)
+============
+
+INFO:root:progress: 20900 / 27000
+INFO:root:progress: 21000 / 27000
+INFO:root:progress: 21100 / 27000
+INFO:root:progress: 21500 / 27000
+INFO:root:progress: 21600 / 27000
+INFO:root:progress: 22000 / 27000
+INFO:root:progress: 22200 / 27000
+INFO:root:progress: 22600 / 27000
+INFO:root:progress: 23000 / 27000
+INFO:root:progress: 23100 / 27000
+INFO:root:S11_max_1: -3.665494474129156 dB
+S11_min_1: -13.170993913599606 dB
+S11_max_2: -3.456219830734992 dB
+S11_min_2: -14.096436821335935 dB
+produced by
+S-Parameter_7447840056 (rev20a)
+CSRF_0402_885392005011_3R3pF
+S-Parameter_7447840075 (rev20a)
+============
+
+INFO:root:progress: 23200 / 27000
+INFO:root:S11_max_1: -3.683952153176118 dB
+S11_min_1: -16.985287577343126 dB
+S11_max_2: -3.4790955270855917 dB
+S11_min_2: -13.264952320945154 dB
+produced by
+S-Parameter_7447840056 (rev20a)
+CSRF_0402_885392005010_3pF
+S-Parameter_7447840068 (rev20a)
+============
+
+INFO:root:progress: 23600 / 27000
+INFO:root:S11_max_1: -3.2292084373993757 dB
+S11_min_1: -16.884711498315234 dB
+S11_max_2: -3.721287143406701 dB
+S11_min_2: -11.996092565594608 dB
+produced by
+S-Parameter_7447840056 (rev20a)
+CSRF_0402_885392005010_3pF
+S-Parameter_7447840082 (rev20a)
+============
+
+INFO:root:progress: 24200 / 27000
+INFO:root:progress: 24400 / 27000
+INFO:root:progress: 24600 / 27000
+INFO:root:progress: 24700 / 27000
+INFO:root:progress: 24800 / 27000
+INFO:root:Done!
+INFO:root:S11_max_1: -3.914183448833042 dB
+S11_min_1: -11.332478007849513 dB
+S11_max_2: -3.6989634223576884 dB
+S11_min_2: -11.084560406505116 dB
+produced by
+S-Parameter_7447840068 (rev20a)
+CSRF_0402_885392005010_3pF
+S-Parameter_7447840082 (rev20a)
+============
+
+ok!
