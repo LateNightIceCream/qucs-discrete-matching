@@ -75,8 +75,22 @@ class Component():
 
     # --------------------------------------------------------------------------
 
-    def get_schematic_string(self, schtring):
-        pass
+    def get_schematic_string(self, schlist):
+        # TODO: check
+        if self.type == C_type.spice:
+            schlist[0] = '<SPICE'
+            print('spicey!')
+            trailer =  '" 1 "_net1,_net2" 0 "yes" 0 "none" 0>'
+        elif self.type == C_type.spfile:
+            schlist[0] = '<SPfile'
+            trailer = '" 1 "rectangular" 0 "linear" 0 "open" 0 "2" 0>'
+
+        schtring = ' '.join(schlist)
+        header = schtring[:schtring.find('"') + 1]
+        sl = (header + trailer).split(' ')
+        sl[9] = '"%s"' % (_abs_path(self.path))
+        #print(header + trailer) # TODO: check
+        return sl
 
     # --------------------------------------------------------------------------
 
@@ -210,14 +224,10 @@ class ResultSchematic(Schematic):
                 if sl[1].startswith('TEMPLATE'):
                     # template file
                     # BUG: Mistake: actually replace line depending on component type!!!!
-                    first_index = line.find('"')
-                    header = line[:first_index]
-                    trailer = line[line.find('"', first_index + 1)+1:]
-                    filestr = _abs_path(comp_variation[component_number].path)
-                    component_number += 1
-                    line = (header + '"%s"' + trailer) % (filestr)
-                    sl = line.split(' ')
+                    comp = comp_variation[component_number]
+                    sl = comp.get_schematic_string(sl)
                     sl[1] += '_' + str(self.nresults)
+                    component_number += 1
                 else:
                     # other e.g. antenna
                     sl[1] += '_' + str(self.nresults)
@@ -255,7 +265,6 @@ class ResultSchematic(Schematic):
         # TODO: seek to position would be more efficient (insert/append lines)
         # since this just writes the whole file over
         with open(self.file, 'w+') as f:
-            print("written out schematic!")
             f.writelines(self.header)
             f.write('<Components>\n')
             f.write('\n'.join(self.component_lines))
@@ -491,16 +500,20 @@ class Manager:
         # check the rest that is not % maxf
         for future in concurrent.futures.as_completed(futures_notdone):
             result = future.result()
+            k = result[0]
             ev_result = self.evaluate(result)
             if ev_result:
                 self.evaluator.print_result(ev_result)
                 self.append_to_result_schematic(result)
+            self.simulations[k].results = None
         for future in futures_done:
             result = future.result()
+            k = result[0]
             ev_result = self.evaluate(result)
             if ev_result:
                 self.evaluator.print_result(ev_result)
                 self.append_to_result_schematic(result)
+            self.simulations[k].results = None
 
     # --------------------------------------------------------------------------
 

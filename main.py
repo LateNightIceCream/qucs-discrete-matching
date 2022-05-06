@@ -56,7 +56,7 @@ class MyEvaluator(matching_sim.Evaluator):
         maxdb_2 = goal[1][0]
         mindb_2 = goal[1][1]
 
-        if (mindb_1 < -0 and maxdb_1 < -0 and mindb_2 < -0 and maxdb_2 < -0):
+        if (mindb_1 < -10 and maxdb_1 < -3.3 and mindb_2 < -10 and maxdb_2 < -3.3):
             if (maxdb_1 < self.best_max_1 and maxdb_2 < self.best_max_2):
                 l.info('==============')
                 l.info('NEW BEST')

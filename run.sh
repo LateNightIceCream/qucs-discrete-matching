@@ -1,1 +1,1 @@
-python3 main.py --nsimulations 5 |& tee results.txt
+python3 main.py --nsimulations -1 |& tee results.txt

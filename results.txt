@@ -6,76 +6,184 @@ INFO:root:Template Netlist: /home/zamza/SharedFolder/qucs-discrete-matching/netl
 INFO:root:Result Schematic: /home/zamza/SharedFolder/qucs-discrete-matching/results.sch
 INFO:root:Component Directory: /home/zamza/SharedFolder/qucs-discrete-matching/components
 INFO:root:Log File: /home/zamza/SharedFolder/qucs-discrete-matching/results.log
-INFO:root:Num. of template components: 4
-INFO:root:Num. of simulations: 5
+INFO:root:Num. of template components: 3
+INFO:root:Num. of simulations: 35937
 INFO:root:-------------------
 INFO:root:simulation started
-INFO:root:==============
-INFO:root:NEW BEST
-INFO:root:==============
-INFO:root:S11_max_1: -0.6671811628795492 dB
-S11_min_1: -2.3451767172850153 dB
-S11_max_2: -0.6104736892428615 dB
-S11_min_2: -2.6417615372030774 dB
-produced by
-S-Parameter_7447840027 (rev20a)
-S-Parameter_7447840027 (rev20a)
-S-Parameter_7447840027 (rev20a)
-S-Parameter_7447840110 (rev20a)
-
-INFO:root:======================
-INFO:root:==============
-INFO:root:NEW BEST
-INFO:root:==============
-INFO:root:S11_max_1: -0.7009308393317247 dB
-S11_min_1: -2.7680385377745544 dB
-S11_max_2: -0.6352685820056096 dB
-S11_min_2: -2.925994367033964 dB
-produced by
-S-Parameter_7447840027 (rev20a)
-S-Parameter_7447840027 (rev20a)
-S-Parameter_7447840027 (rev20a)
-S-Parameter_7447840115 (rev20a)
-
-INFO:root:======================
-INFO:root:S11_max_1: -0.5946144134287598 dB
-S11_min_1: -1.161535393018833 dB
-S11_max_2: -0.49977757772288106 dB
-S11_min_2: -1.3475279062956556 dB
-produced by
-S-Parameter_7447840027 (rev20a)
-S-Parameter_7447840027 (rev20a)
-S-Parameter_7447840027 (rev20a)
-S-Parameter_7447840027 (rev20a)
-
-INFO:root:======================
-INFO:root:==============
-INFO:root:NEW BEST
-INFO:root:==============
-INFO:root:S11_max_1: -0.7167226925308952 dB
-S11_min_1: -2.967147247387363 dB
-S11_max_2: -0.6485645338077244 dB
-S11_min_2: -3.02821890855219 dB
-produced by
-S-Parameter_7447840027 (rev20a)
-S-Parameter_7447840027 (rev20a)
-S-Parameter_7447840027 (rev20a)
-S-Parameter_7447840118 (rev20a)
-
-INFO:root:======================
-INFO:root:S11_max_1: -0.5771830001676139 dB
-S11_min_1: -0.7736426063034982 dB
-S11_max_2: -0.4298206991273476 dB
-S11_min_2: -0.693256765378619 dB
-produced by
-S-Parameter_7447840027 (rev20a)
-S-Parameter_7447840027 (rev20a)
-S-Parameter_7447840027 (rev20a)
-S-Parameter_7447840010 (rev20a)
-
-INFO:root:======================
-written out schematic!
-written out schematic!
-written out schematic!
-written out schematic!
-written out schematic!
+INFO:root:progress: 100 / 35937
+INFO:root:progress: 400 / 35937
+INFO:root:progress: 700 / 35937
+INFO:root:progress: 800 / 35937
+INFO:root:progress: 900 / 35937
+INFO:root:progress: 1300 / 35937
+INFO:root:progress: 1400 / 35937
+INFO:root:progress: 1500 / 35937
+INFO:root:progress: 1800 / 35937
+INFO:root:progress: 1900 / 35937
+INFO:root:progress: 2000 / 35937
+INFO:root:progress: 2200 / 35937
+INFO:root:progress: 2300 / 35937
+INFO:root:progress: 2400 / 35937
+INFO:root:progress: 2500 / 35937
+INFO:root:progress: 2700 / 35937
+INFO:root:progress: 2900 / 35937
+INFO:root:progress: 3200 / 35937
+INFO:root:progress: 3400 / 35937
+INFO:root:progress: 3500 / 35937
+INFO:root:progress: 4100 / 35937
+INFO:root:progress: 4200 / 35937
+INFO:root:progress: 4600 / 35937
+INFO:root:progress: 4800 / 35937
+INFO:root:progress: 5100 / 35937
+INFO:root:progress: 5300 / 35937
+INFO:root:progress: 5400 / 35937
+INFO:root:progress: 5500 / 35937
+INFO:root:progress: 5700 / 35937
+INFO:root:progress: 5900 / 35937
+INFO:root:progress: 6300 / 35937
+INFO:root:progress: 6400 / 35937
+INFO:root:progress: 6700 / 35937
+INFO:root:progress: 6900 / 35937
+INFO:root:progress: 7100 / 35937
+INFO:root:progress: 7200 / 35937
+INFO:root:progress: 7300 / 35937
+INFO:root:progress: 7400 / 35937
+INFO:root:progress: 7600 / 35937
+INFO:root:progress: 7800 / 35937
+INFO:root:progress: 7900 / 35937
+INFO:root:progress: 8100 / 35937
+INFO:root:progress: 8300 / 35937
+INFO:root:progress: 8500 / 35937
+INFO:root:progress: 8800 / 35937
+INFO:root:progress: 8900 / 35937
+INFO:root:progress: 9100 / 35937
+INFO:root:progress: 9300 / 35937
+INFO:root:progress: 9400 / 35937
+INFO:root:progress: 9600 / 35937
+INFO:root:progress: 9700 / 35937
+INFO:root:progress: 9900 / 35937
+INFO:root:progress: 10000 / 35937
+INFO:root:progress: 10300 / 35937
+INFO:root:progress: 10400 / 35937
+INFO:root:progress: 10500 / 35937
+INFO:root:progress: 10700 / 35937
+INFO:root:progress: 10800 / 35937
+INFO:root:progress: 11100 / 35937
+INFO:root:progress: 11300 / 35937
+INFO:root:progress: 11400 / 35937
+INFO:root:progress: 11500 / 35937
+INFO:root:progress: 11800 / 35937
+INFO:root:progress: 11900 / 35937
+INFO:root:progress: 12000 / 35937
+INFO:root:progress: 12100 / 35937
+INFO:root:progress: 12200 / 35937
+INFO:root:progress: 12300 / 35937
+INFO:root:progress: 12500 / 35937
+INFO:root:progress: 12600 / 35937
+INFO:root:progress: 12800 / 35937
+INFO:root:progress: 13000 / 35937
+INFO:root:progress: 13100 / 35937
+INFO:root:progress: 13300 / 35937
+INFO:root:progress: 13400 / 35937
+INFO:root:progress: 13500 / 35937
+INFO:root:progress: 13600 / 35937
+INFO:root:progress: 13700 / 35937
+INFO:root:progress: 13900 / 35937
+INFO:root:progress: 14000 / 35937
+INFO:root:progress: 14200 / 35937
+INFO:root:progress: 14500 / 35937
+INFO:root:progress: 14600 / 35937
+INFO:root:progress: 14700 / 35937
+INFO:root:progress: 15000 / 35937
+INFO:root:progress: 15100 / 35937
+INFO:root:progress: 15500 / 35937
+INFO:root:progress: 15600 / 35937
+INFO:root:progress: 15700 / 35937
+INFO:root:progress: 15900 / 35937
+INFO:root:progress: 16000 / 35937
+INFO:root:progress: 16300 / 35937
+INFO:root:progress: 16400 / 35937
+INFO:root:progress: 16600 / 35937
+INFO:root:progress: 16700 / 35937
+INFO:root:progress: 17100 / 35937
+INFO:root:progress: 17200 / 35937
+INFO:root:progress: 17800 / 35937
+INFO:root:progress: 17900 / 35937
+INFO:root:progress: 18000 / 35937
+INFO:root:progress: 18100 / 35937
+INFO:root:progress: 18300 / 35937
+INFO:root:progress: 18400 / 35937
+INFO:root:progress: 18500 / 35937
+INFO:root:progress: 18600 / 35937
+INFO:root:progress: 18700 / 35937
+INFO:root:progress: 18800 / 35937
+INFO:root:progress: 18900 / 35937
+INFO:root:progress: 19000 / 35937
+INFO:root:progress: 19100 / 35937
+INFO:root:progress: 19200 / 35937
+INFO:root:progress: 19300 / 35937
+INFO:root:progress: 19400 / 35937
+INFO:root:progress: 19600 / 35937
+INFO:root:progress: 19700 / 35937
+INFO:root:progress: 19900 / 35937
+INFO:root:progress: 20000 / 35937
+INFO:root:progress: 20300 / 35937
+INFO:root:progress: 20500 / 35937
+INFO:root:progress: 20700 / 35937
+INFO:root:progress: 20800 / 35937
+INFO:root:progress: 20900 / 35937
+INFO:root:progress: 21200 / 35937
+INFO:root:progress: 21300 / 35937
+INFO:root:progress: 21400 / 35937
+INFO:root:progress: 21500 / 35937
+INFO:root:progress: 21900 / 35937
+INFO:root:progress: 22500 / 35937
+INFO:root:progress: 22800 / 35937
+INFO:root:progress: 23100 / 35937
+INFO:root:progress: 23200 / 35937
+INFO:root:progress: 23300 / 35937
+INFO:root:progress: 23500 / 35937
+INFO:root:progress: 23600 / 35937
+INFO:root:progress: 23800 / 35937
+INFO:root:progress: 24100 / 35937
+INFO:root:progress: 24200 / 35937
+INFO:root:progress: 24300 / 35937
+INFO:root:progress: 24400 / 35937
+INFO:root:progress: 24500 / 35937
+INFO:root:progress: 24700 / 35937
+INFO:root:progress: 24800 / 35937
+INFO:root:progress: 24900 / 35937
+INFO:root:progress: 25000 / 35937
+INFO:root:progress: 25100 / 35937
+INFO:root:progress: 25200 / 35937
+INFO:root:progress: 25300 / 35937
+INFO:root:progress: 25500 / 35937
+INFO:root:progress: 25900 / 35937
+INFO:root:progress: 26100 / 35937
+INFO:root:progress: 26400 / 35937
+INFO:root:progress: 26600 / 35937
+INFO:root:progress: 26700 / 35937
+INFO:root:progress: 26800 / 35937
+INFO:root:progress: 27000 / 35937
+INFO:root:progress: 27100 / 35937
+INFO:root:progress: 27200 / 35937
+INFO:root:progress: 27300 / 35937
+INFO:root:progress: 27400 / 35937
+INFO:root:progress: 27700 / 35937
+INFO:root:progress: 27900 / 35937
+INFO:root:progress: 28000 / 35937
+INFO:root:progress: 28300 / 35937
+INFO:root:progress: 28600 / 35937
+INFO:root:progress: 28700 / 35937
+INFO:root:progress: 28800 / 35937
+INFO:root:progress: 29100 / 35937
+INFO:root:progress: 29200 / 35937
+INFO:root:progress: 29300 / 35937
+INFO:root:progress: 29600 / 35937
+INFO:root:progress: 29700 / 35937
+INFO:root:progress: 29900 / 35937
+INFO:root:progress: 30000 / 35937
+INFO:root:progress: 30100 / 35937
+INFO:root:progress: 30200 / 35937
+INFO:root:progress: 30500 / 35937
+INFO:root:progress: 30700 / 35937
