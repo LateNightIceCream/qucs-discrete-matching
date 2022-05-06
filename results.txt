@@ -3,56 +3,79 @@ INFO:root:MATCHING SIMULATION
 INFO:root:-------------------
 INFO:root:Template Schematic: /home/zamza/SharedFolder/qucs-discrete-matching/template.sch
 INFO:root:Template Netlist: /home/zamza/SharedFolder/qucs-discrete-matching/netlist_template.txt
+INFO:root:Result Schematic: /home/zamza/SharedFolder/qucs-discrete-matching/results.sch
 INFO:root:Component Directory: /home/zamza/SharedFolder/qucs-discrete-matching/components
 INFO:root:Log File: /home/zamza/SharedFolder/qucs-discrete-matching/results.log
 INFO:root:Num. of template components: 4
-INFO:root:Num. of simulations: 100
+INFO:root:Num. of simulations: 5
 INFO:root:-------------------
 INFO:root:simulation started
 INFO:root:==============
 INFO:root:NEW BEST
 INFO:root:==============
-INFO:root:S11_max_1: -1.1900512112048431 dB
-S11_min_1: -8.36232183659335 dB
-S11_max_2: -1.8299407146443354 dB
-S11_min_2: -3.8767393960401293 dB
+INFO:root:S11_max_1: -0.6671811628795492 dB
+S11_min_1: -2.3451767172850153 dB
+S11_max_2: -0.6104736892428615 dB
+S11_min_2: -2.6417615372030774 dB
 produced by
 S-Parameter_7447840027 (rev20a)
 S-Parameter_7447840027 (rev20a)
-S-Parameter_7447840010 (rev20a)
-CSRF_0402_885392005010_3pF
+S-Parameter_7447840027 (rev20a)
+S-Parameter_7447840110 (rev20a)
 
 INFO:root:======================
-INFO:root:S11_max_1: -1.2670066445174966 dB
-S11_min_1: -8.936318895647089 dB
-S11_max_2: -1.7181983822158189 dB
-S11_min_2: -4.6960484181163835 dB
+INFO:root:==============
+INFO:root:NEW BEST
+INFO:root:==============
+INFO:root:S11_max_1: -0.7009308393317247 dB
+S11_min_1: -2.7680385377745544 dB
+S11_max_2: -0.6352685820056096 dB
+S11_min_2: -2.925994367033964 dB
 produced by
 S-Parameter_7447840027 (rev20a)
 S-Parameter_7447840027 (rev20a)
-S-Parameter_7447840010 (rev20a)
-CSRF_0402_885392005011_3R3pF
+S-Parameter_7447840027 (rev20a)
+S-Parameter_7447840115 (rev20a)
 
 INFO:root:======================
-INFO:root:S11_max_1: -1.6380658283926384 dB
-S11_min_1: -13.058107153327711 dB
-S11_max_2: -1.1008138889080397 dB
-S11_min_2: -3.2113939801269975 dB
+INFO:root:S11_max_1: -0.5946144134287598 dB
+S11_min_1: -1.161535393018833 dB
+S11_max_2: -0.49977757772288106 dB
+S11_min_2: -1.3475279062956556 dB
 produced by
 S-Parameter_7447840027 (rev20a)
 S-Parameter_7447840027 (rev20a)
-S-Parameter_7447840010 (rev20a)
-CSRF_0402_885392005012_4R7pF
+S-Parameter_7447840027 (rev20a)
+S-Parameter_7447840027 (rev20a)
 
 INFO:root:======================
-INFO:root:S11_max_1: -1.0713512598856192 dB
-S11_min_1: -7.2397142944201365 dB
-S11_max_2: -1.8818917267298938 dB
-S11_min_2: -3.4148328258668115 dB
+INFO:root:==============
+INFO:root:NEW BEST
+INFO:root:==============
+INFO:root:S11_max_1: -0.7167226925308952 dB
+S11_min_1: -2.967147247387363 dB
+S11_max_2: -0.6485645338077244 dB
+S11_min_2: -3.02821890855219 dB
 produced by
 S-Parameter_7447840027 (rev20a)
 S-Parameter_7447840027 (rev20a)
-S-Parameter_7447840010 (rev20a)
-CSRF_0402_885392005009_2R3pF
+S-Parameter_7447840027 (rev20a)
+S-Parameter_7447840118 (rev20a)
 
 INFO:root:======================
+INFO:root:S11_max_1: -0.5771830001676139 dB
+S11_min_1: -0.7736426063034982 dB
+S11_max_2: -0.4298206991273476 dB
+S11_min_2: -0.693256765378619 dB
+produced by
+S-Parameter_7447840027 (rev20a)
+S-Parameter_7447840027 (rev20a)
+S-Parameter_7447840027 (rev20a)
+S-Parameter_7447840010 (rev20a)
+
+INFO:root:======================
+written out schematic!
+written out schematic!
+written out schematic!
+written out schematic!
+written out schematic!

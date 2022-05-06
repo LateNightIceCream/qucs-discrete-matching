@@ -27,7 +27,7 @@ parser.add_argument('-t', '--templatefile', type=str, help='qucs template .sch f
 parser.add_argument('-u', '--netlistfile',  type=str, help='qucs output netlist file to use', default='netlist_template.txt')
 parser.add_argument('-d', '--componentdir', type=str, help='path to component directory containing .sp or .s2p files (can be nested)', default='components/')
 parser.add_argument('-n', '--nsimulations', type=int, help='max number of simulations', default=-1)
-parser.add_argument('-o', '--outfile',      type=str, help='output schematic file name', default='results.txt')
+parser.add_argument('-o', '--outfile',      type=str, help='output schematic file name', default='results.sch')
 parser.add_argument('-l', '--logfile',      type=str, help='log file name', default='results.log')
 
 # ------------------------------------------------------------------------------
@@ -56,7 +56,7 @@ class MyEvaluator(matching_sim.Evaluator):
         maxdb_2 = goal[1][0]
         mindb_2 = goal[1][1]
 
-        if (mindb_1 < -1 and maxdb_1 < -1 and mindb_2 < -1 and maxdb_2 < -1):
+        if (mindb_1 < -0 and maxdb_1 < -0 and mindb_2 < -0 and maxdb_2 < -0):
             if (maxdb_1 < self.best_max_1 and maxdb_2 < self.best_max_2):
                 l.info('==============')
                 l.info('NEW BEST')
@@ -134,6 +134,9 @@ def main():
         return -1
 
     evaluator = MyEvaluator()
+
+    if os.path.exists(outfile):
+        os.remove(outfile)
 
     # convert to component objects
     sim_manager = matching_sim.Manager(templ_schematic, outfile, templ_netlist, component_dir, logfile, evaluator, nsimulations)

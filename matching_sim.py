@@ -12,6 +12,8 @@ from random import shuffle
 
 import python_qucs_lnic.qucs.simulate as qucssim
 
+# TODO: Result class
+
 # ------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------
@@ -97,30 +99,173 @@ class Component():
 class Schematic:
     def __init__(self, schfile):
         self.file = schfile
-        self.lines = self.load_lines()
+        self.lines = self.load_lines(self.file)
+        self.component_lines = self.get_section_lines('Components')
+        self.wire_lines = self.get_section_lines('Wires')
 
-    def load_lines(self):
-        with open(self.file, 'r') as f:
-            self.lines = f.readlines()
+    def load_lines(self, file):
+        try:
+            with open(file, 'r') as f:
+                self.lines = f.readlines()
+        except:
+            self.lines = []
         return self.lines
+
+    def get_section_lines(self, section):
+        start_i = None
+        end_i = None
+        for i, line in enumerate(self.lines):
+            if line == '<%s>\n' % section:
+                start_i = i
+            elif line == '</%s>\n' % section:
+                end_i = i
+
+        if not start_i or not end_i:
+            return []
+        return self.lines[start_i+1:end_i]
 
 # ------------------------------------------------------------------------------
 
 class ResultSchematic(Schematic):
-    def __init__(self, schfile):
-        super().__init__(schfile)
+    def __init__(self, templatefile, outfile):
+        super().__init__(outfile)
+        self.template_schematic = Schematic(templatefile)
+        self.header = self.get_header()
+        self.trailer = self.get_trailer()
+
+        self.nresults = 0
+
+    # --------------------------------------------------------------------------
+
+    def get_header(self):
+        start_idx = 0
+        end_idx = None
+        for i, line in enumerate(self.template_schematic.lines):
+            if line == '</Symbol>\n':
+                end_idx = i
+
+        return self.template_schematic.lines[start_idx:end_idx+1]
+    # --------------------------------------------------------------------------
+
+    def get_trailer(self):
+        start_idx = None
+        end_idx = None
+        for i, line in enumerate(self.template_schematic.lines):
+            if line == '<Diagrams>\n':
+                start_idx = i
+            elif line == '</Paintings>\n':
+                end_idx = i
+        return self.template_schematic.lines[start_idx:end_idx+1]
+
+    # --------------------------------------------------------------------------
+
+    def get_shifted_component_lines(self, lines, offset):
+        new_lines = []
+        for line in lines:
+            sl = line.strip().split(' ')
+            x_idx = 3
+            y_idx = 4
+            if sl[0] == '<GND': # TODO: can skip?
+                x_idx = 3
+                y_idx = 4
+            sl[x_idx] = str(int(sl[x_idx]) + offset[0])
+            sl[y_idx] = str(int(sl[y_idx]) + offset[1])
+            new_lines.append(' '.join(sl))
+        return new_lines
+
+    # --------------------------------------------------------------------------
+
+    def get_shifted_wire_lines(self, lines, offset):
+        new_lines = []
+        for line in lines:
+            sl = line.strip().split(' ')
+            sl[0] = '<' + str(int(sl[0][1:]) + offset[0])
+            sl[1] = str(int(sl[1]) + offset[1])
+            sl[2] = str(int(sl[2]) + offset[0])
+            sl[3] = str(int(sl[3]) + offset[1])
+            new_lines.append(' '.join(sl))
+        return new_lines
+
+    # --------------------------------------------------------------------------
+
+    def modify_component_lines(self, lines, result):
+        # iilsbiwins
+        new_lines = []
+        component_number = 0
+        comp_variation = result[2]
+        for line in lines:
+            sl = line.split(' ') # beware spaces in file names
+            if sl[0] == '<Eqn':
+                n = self.nresults + 1
+                sl[1] = 'Eqn%s' % (str(n))
+                sl[9] = '"S{0}{0}_dB=dB(S[{0},{0}])"'.format(str(n))
+                #print('equation line!')
+            elif sl[0] == '<Pac':
+                #print('power source line!')
+                source_number = self.nresults + 1
+                sl[1] = 'P%s' % (str(source_number))
+                sl[9] = '"%s"' % (str(source_number))
+            elif sl[0] == '<SPICE' or sl[0] == '<SPfile':
+                #print('component line!')
+                if sl[1].startswith('TEMPLATE'):
+                    # template file
+                    # BUG: Mistake: actually replace line depending on component type!!!!
+                    first_index = line.find('"')
+                    header = line[:first_index]
+                    trailer = line[line.find('"', first_index + 1)+1:]
+                    filestr = _abs_path(comp_variation[component_number].path)
+                    component_number += 1
+                    line = (header + '"%s"' + trailer) % (filestr)
+                    sl = line.split(' ')
+                    sl[1] += '_' + str(self.nresults)
+                else:
+                    # other e.g. antenna
+                    sl[1] += '_' + str(self.nresults)
+
+            new_lines.append(' '.join(sl))
+        return new_lines
+
+    # --------------------------------------------------------------------------
 
     def append(self, result):
         '''
         TODO:
         - copy:
           - Power Sources -> change numbers
-          - Template Components -> change line, keep basic stuff
-          - Wires
+          - Template Components -> change file, keep basic stuff
 
         - change y offset of EVERYTHING <<<---- maybe do this one first, so copy + change offset
         '''
-        pass
+        yoffset = 350 * self.nresults
+        comp_lines = self.get_shifted_component_lines(self.template_schematic.component_lines, (0, yoffset))
+        # remove simulation block
+        if self.nresults > 0:
+            comp_lines = filter(lambda l: not l.startswith('<.SP'), comp_lines)
+
+        wire_lines = self.get_shifted_wire_lines(self.template_schematic.wire_lines, (0, yoffset))
+        comp_lines = self.modify_component_lines(comp_lines, result)
+        self.component_lines += comp_lines
+        self.wire_lines += wire_lines
+
+        self.write_out()
+        self.nresults += 1
+
+    def write_out(self):
+        # BUG: Threads are overriding each other?
+        # TODO: seek to position would be more efficient (insert/append lines)
+        # since this just writes the whole file over
+        with open(self.file, 'w+') as f:
+            print("written out schematic!")
+            f.writelines(self.header)
+            f.write('<Components>\n')
+            f.write('\n'.join(self.component_lines))
+            f.write('\n')
+            f.write('</Components>\n')
+            f.write('<Wires>\n')
+            f.write('\n'.join(self.wire_lines))
+            f.write('\n')
+            f.write('</Wires>\n')
+            f.writelines(self.trailer)
 
 # ------------------------------------------------------------------------------
 
@@ -216,7 +361,7 @@ class Evaluator:
 class Manager:
     def __init__(self, template_schematic, output_schematic, template_netlist, component_dir, logfile, evaluator, nsimulations = -1):
         self.template_schematic = Schematic(pathlib.Path(template_schematic))
-        self.result_schematic   = ResultSchematic(pathlib.Path(output_schematic))
+        self.result_schematic   = ResultSchematic(pathlib.Path(template_schematic), pathlib.Path(output_schematic))
         self.template_netlist   = Netlist(pathlib.Path(template_netlist))
         self.component_dir      = pathlib.Path(component_dir)
         self.logfile            = pathlib.Path(logfile)
@@ -249,6 +394,7 @@ class Manager:
         l.info('-------------------')
         l.info('Template Schematic: %s' % str(_abs_path(self.template_schematic.file)))
         l.info('Template Netlist: %s' % str(_abs_path(self.template_netlist.file)))
+        l.info('Result Schematic: %s' % str(_abs_path(self.result_schematic.file)))
         l.info('Component Directory: %s' % str(_abs_path(self.component_dir)))
         #l.info('Result Schematic %s' % str(_abs_path(self.result_schematic)))
         l.info('Log File: %s' % str(_abs_path(self.logfile)))
@@ -316,7 +462,7 @@ class Manager:
         with concurrent.futures.ThreadPoolExecutor() as executor:
             futures_notdone = set()
             futures_done = set()
-            maxf = 20
+            maxf = 200
 
             for i, sim in enumerate(self.simulations):
                 futures_notdone.add(executor.submit(self.sim_thread, sim, i))
@@ -348,11 +494,13 @@ class Manager:
             ev_result = self.evaluate(result)
             if ev_result:
                 self.evaluator.print_result(ev_result)
+                self.append_to_result_schematic(result)
         for future in futures_done:
             result = future.result()
             ev_result = self.evaluate(result)
             if ev_result:
                 self.evaluator.print_result(ev_result)
+                self.append_to_result_schematic(result)
 
     # --------------------------------------------------------------------------
 
