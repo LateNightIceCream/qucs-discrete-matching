@@ -1,0 +1,113 @@
+INFO:root:Number of detected Template Components: 3
+INFO:root:Total number of simulations: 27000
+ERROR:root:just a test to make sure errors work
+INFO:root:simulation started
+INFO:root:progress: 700 / 27000
+INFO:root:progress: 900 / 27000
+INFO:root:progress: 1100 / 27000
+INFO:root:progress: 1400 / 27000
+INFO:root:progress: 1500 / 27000
+INFO:root:progress: 1600 / 27000
+INFO:root:progress: 1700 / 27000
+INFO:root:progress: 1900 / 27000
+INFO:root:progress: 2100 / 27000
+INFO:root:progress: 2300 / 27000
+INFO:root:progress: 2700 / 27000
+INFO:root:progress: 2900 / 27000
+INFO:root:progress: 3100 / 27000
+INFO:root:progress: 3200 / 27000
+INFO:root:progress: 3600 / 27000
+INFO:root:progress: 3700 / 27000
+INFO:root:progress: 4000 / 27000
+INFO:root:progress: 4300 / 27000
+INFO:root:progress: 4600 / 27000
+INFO:root:progress: 4700 / 27000
+INFO:root:progress: 4800 / 27000
+INFO:root:progress: 5000 / 27000
+INFO:root:progress: 5400 / 27000
+INFO:root:progress: 5800 / 27000
+INFO:root:progress: 5900 / 27000
+INFO:root:progress: 6100 / 27000
+INFO:root:progress: 6200 / 27000
+INFO:root:progress: 6400 / 27000
+INFO:root:progress: 6600 / 27000
+INFO:root:progress: 6800 / 27000
+INFO:root:progress: 6900 / 27000
+INFO:root:progress: 7000 / 27000
+INFO:root:progress: 7100 / 27000
+INFO:root:progress: 7200 / 27000
+INFO:root:progress: 7500 / 27000
+INFO:root:progress: 7600 / 27000
+INFO:root:progress: 8200 / 27000
+INFO:root:progress: 8400 / 27000
+INFO:root:progress: 8500 / 27000
+INFO:root:progress: 8700 / 27000
+INFO:root:progress: 8800 / 27000
+INFO:root:progress: 9100 / 27000
+INFO:root:progress: 9200 / 27000
+INFO:root:progress: 9400 / 27000
+INFO:root:progress: 9700 / 27000
+INFO:root:progress: 9800 / 27000
+INFO:root:progress: 10200 / 27000
+INFO:root:progress: 10600 / 27000
+INFO:root:progress: 10900 / 27000
+INFO:root:progress: 11200 / 27000
+INFO:root:progress: 12300 / 27000
+INFO:root:progress: 12500 / 27000
+INFO:root:progress: 12900 / 27000
+INFO:root:progress: 13300 / 27000
+INFO:root:progress: 13900 / 27000
+INFO:root:progress: 14900 / 27000
+INFO:root:progress: 15000 / 27000
+INFO:root:progress: 15100 / 27000
+INFO:root:progress: 16200 / 27000
+INFO:root:progress: 16500 / 27000
+INFO:root:progress: 16700 / 27000
+INFO:root:progress: 16900 / 27000
+INFO:root:progress: 17200 / 27000
+INFO:root:progress: 17900 / 27000
+INFO:root:progress: 18100 / 27000
+INFO:root:progress: 18500 / 27000
+INFO:root:progress: 18800 / 27000
+INFO:root:progress: 19000 / 27000
+INFO:root:progress: 19100 / 27000
+INFO:root:progress: 19200 / 27000
+INFO:root:progress: 19300 / 27000
+INFO:root:progress: 19400 / 27000
+INFO:root:progress: 19500 / 27000
+INFO:root:progress: 20000 / 27000
+INFO:root:progress: 20100 / 27000
+INFO:root:progress: 20200 / 27000
+INFO:root:progress: 20300 / 27000
+INFO:root:progress: 20800 / 27000
+INFO:root:progress: 20900 / 27000
+INFO:root:progress: 21000 / 27000
+INFO:root:progress: 21200 / 27000
+INFO:root:progress: 21300 / 27000
+INFO:root:progress: 21400 / 27000
+INFO:root:progress: 21600 / 27000
+INFO:root:progress: 21900 / 27000
+INFO:root:progress: 22300 / 27000
+INFO:root:progress: 22400 / 27000
+INFO:root:progress: 22500 / 27000
+INFO:root:progress: 22600 / 27000
+INFO:root:progress: 22700 / 27000
+INFO:root:progress: 23100 / 27000
+INFO:root:progress: 23500 / 27000
+INFO:root:progress: 24000 / 27000
+INFO:root:progress: 24100 / 27000
+INFO:root:progress: 24600 / 27000
+INFO:root:progress: 24700 / 27000
+INFO:root:progress: 25000 / 27000
+INFO:root:Done!
+ok!
+Traceback (most recent call last):
+  File "qucs_discrete_matching.py", line 510, in <module>
+    
+  File "qucs_discrete_matching.py", line 498, in main
+    best_variation = result[1]
+  File "qucs_discrete_matching.py", line 332, in print_results
+    
+  File "qucs_discrete_matching.py", line 316, in get_result_str
+    
+TypeError: 'int' object is not subscriptable

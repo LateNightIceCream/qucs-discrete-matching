@@ -10,7 +10,7 @@ sudo apt install -y adms automake build-essential libtool libtool-bin gperf flex
 mkdir qucs_git
 cd qucs_git
 # get source
-git clone git://git.code.sf.net/p/qucs/git qucs
+git clone --recursive git://git.code.sf.net/p/qucs/git qucs
 cd qucs
 git submodule init
 git submodule update
