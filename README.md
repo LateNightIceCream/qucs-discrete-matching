@@ -2,6 +2,8 @@
 
 Horrendous simulation for antenna matching networks
 
+> if it looks stupid but works it ain't stupid
+
 ## Dependencies
 ### Linux
 ```
